@@ -9,16 +9,21 @@
 #include <sstream>
 #include <string>
 
+#include "World.h"
 #include "MarketController.h"
 
 int main() {
-    served::multiplexer mux;
+    served::multiplexer* mux = new served::multiplexer();
+	World *world = new World();
 
 	// GET /hello
-    MarketController::marketController(mux);
+    MarketController* marketController = new MarketController(mux, world);
 
 	// Create the server and run with 10 handler threads.
-	served::net::server server("127.0.0.1", "8080", mux);
+	served::net::server server("127.0.0.1", "8080", *mux);
 	server.run(10);
+
+	delete world;
+	delete mux;
 	return (EXIT_SUCCESS);
 }  

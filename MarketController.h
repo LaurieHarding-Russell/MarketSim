@@ -1,24 +1,39 @@
+#pragma once
 
 #include <served/served.hpp>
 #include <served/plugins.hpp>
+#include <vector>
 
-namespace MarketController {
+#include "World.h"
 
-    void marketController(served::multiplexer &mux) {
-        mux.handle("/data")
-            .get([](served::response & res, const served::request & req) {
-                res << "Hello world!";
-            });
+static class MarketController {
 
-        mux.handle("/start")
-            .get([](served::response & res, const served::request & req) {
-                res << "Hello world!";
-            });
+    private:
+        World *world;
+        served::multiplexer *mux;
 
-        mux.handle("/simulate-year")
-            .get([](served::response & res, const served::request & req) {
-                res << "Hello world!";
-            });
-    }
+        
+    public:
+        MarketController(served::multiplexer *mux, World *world) {
+            this->mux = mux;
+            this->world = world;
+        }
+
+        void marketController(served::multiplexer &mux) {
+            mux.handle("/data")
+                .get([](served::response & res, const served::request & req) {
+                    res << "Hello world!";
+                });
+
+            mux.handle("/start")
+                .get([](served::response & res, const served::request & req) {
+                    res << "Starting!";
+                });
+
+            mux.handle("/simulate-year")
+                .get([](served::response & res, const served::request & req) {
+                    res << "simulate-year!";
+                });
+        }
 
 }
