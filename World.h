@@ -17,6 +17,7 @@ class World {
         std::string simulateYear();
 
     private:
+        
         std::vector<Company> companies;
         json asJson();
 
