@@ -1,8 +1,11 @@
 cc_binary(
     name = "Market",
     srcs = [
-        "Market.cpp",
-        "MarketController.h"
+        "MarketSim.cpp",
+        "MarketController.h",
+        "World.h",
+        "Company.h",
+        "Employee.h"
     ],
     deps = [
         "@boost//:system",

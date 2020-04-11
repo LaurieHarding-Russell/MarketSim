@@ -1,12 +1,14 @@
-#pragma once
+#ifndef MARKET_CONTROLLER_H
+#define MARKET_CONTROLLER_H
 
 #include <served/served.hpp>
 #include <served/plugins.hpp>
 #include <vector>
 
 #include "World.h"
+#include "MarketController.h"
 
-static class MarketController {
+class MarketController {
 
     private:
         World *world;
@@ -19,21 +21,23 @@ static class MarketController {
             this->world = world;
         }
 
-        void marketController(served::multiplexer &mux) {
-            mux.handle("/data")
+        void init() {
+            mux->handle("/data")
                 .get([](served::response & res, const served::request & req) {
                     res << "Hello world!";
                 });
 
-            mux.handle("/start")
+            mux->handle("/start")
                 .get([](served::response & res, const served::request & req) {
                     res << "Starting!";
                 });
 
-            mux.handle("/simulate-year")
+            mux->handle("/simulate-year")
                 .get([](served::response & res, const served::request & req) {
                     res << "simulate-year!";
                 });
         }
 
-}
+};
+
+#endif

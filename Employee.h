@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EMPLOYEE_H
+#define EMPLOYEE_H
 
 class Employee {
 
@@ -7,3 +8,5 @@ class Employee {
     public:
 
 };
+
+#endif

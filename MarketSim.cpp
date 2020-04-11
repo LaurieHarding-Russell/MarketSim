@@ -18,6 +18,7 @@ int main() {
 
 	// GET /hello
     MarketController* marketController = new MarketController(mux, world);
+	marketController->init();
 
 	// Create the server and run with 10 handler threads.
 	served::net::server server("127.0.0.1", "8080", *mux);
