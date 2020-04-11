@@ -23,17 +23,17 @@ class MarketController {
 
         void init() {
             mux->handle("/data")
-                .get([](served::response & res, const served::request & req) {
-                    res << "Hello world!";
+                .get([&](served::response & res, const served::request & req) {
+                    res << world->getStockmarketData();
                 });
 
             mux->handle("/start")
-                .get([](served::response & res, const served::request & req) {
-                    res << "Starting!";
+                .get([&](served::response & res, const served::request & req) {
+                    res << world->reset();
                 });
 
             mux->handle("/simulate-year")
-                .get([](served::response & res, const served::request & req) {
+                .get([&](served::response & res, const served::request & req) {
                     res << "simulate-year!";
                 });
         }

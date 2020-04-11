@@ -17,3 +17,18 @@ http_archive(
     strip_prefix = "served-8ef95d72692ef1f392fc0a44a6dad4235386ac9d",
     sha256 = "fb97bba7b99125bd12e821ad499cc939d25ccd19614b7ea3a8bb8392b5fbb115"
 )
+
+http_archive(
+    name = "json",
+    strip_prefix = "json-456478b3c50d60100dbb1fb9bc931f370a2c1c28",
+    urls = [
+        "https://github.com/nlohmann/json/archive/456478b3c50d60100dbb1fb9bc931f370a2c1c28.tar.gz",
+    ],
+    build_file_content = """
+cc_library(
+    name = "json",
+    hdrs = ["single_include/nlohmann/json.hpp"],
+    visibility = ["//visibility:public"],
+)
+"""
+)
