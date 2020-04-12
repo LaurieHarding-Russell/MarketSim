@@ -20,6 +20,7 @@ int main() {
 	InvestorController* investorController = new InvestorController(mux, world);
 
 	marketController->init();
+	investorController->init();
 
 	served::net::server server("127.0.0.1", "8080", *mux);
 	server.run(10);
