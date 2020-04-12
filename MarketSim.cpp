@@ -27,5 +27,7 @@ int main() {
 
 	delete world;
 	delete mux;
+	delete marketController;
+	delete investorController;
 	return (EXIT_SUCCESS);
 }  
