@@ -10,16 +10,17 @@
 #include <string>
 
 #include "MarketController.h"
+#include "InvestorController.h"
 
 int main() {
     served::multiplexer* mux = new served::multiplexer();
 	World *world = new World();
 
-	// GET /hello
     MarketController* marketController = new MarketController(mux, world);
+	InvestorController* investorController = new InvestorController(mux, world);
+
 	marketController->init();
 
-	// Create the server and run with 10 handler threads.
 	served::net::server server("127.0.0.1", "8080", *mux);
 	server.run(10);
 

@@ -3,6 +3,7 @@ cc_binary(
     srcs = [
         "MarketSim.cpp",
         "MarketController.h",
+        "InvestorController.h",
     ],
     deps = [
         "//WorldSim:World",
