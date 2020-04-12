@@ -1,11 +1,6 @@
 
 #include "Investor.h"
 
-namespace beast = boost::beast;     // from <boost/beast.hpp>
-namespace http = beast::http;       // from <boost/beast/http.hpp>
-namespace net = boost::asio;        // from <boost/asio.hpp>
-using tcp = net::ip::tcp;           // from <boost/asio/ip/tcp.hpp>
-
 Investor::Investor(std::string name) {
     // FIXME, think about this
     Investor(name, "", "");
@@ -27,6 +22,18 @@ void Investor::alertYearEnd() {
     }
 }
 
+void to_json(json& j, const Investor& investor) {
+    j = json{
+        {"name", investor.name}, 
+        {"funds", investor.funds}
+    };
+}
+
+
+void from_json(const json& j, Investor& investor) {
+    j.at("name").get_to(investor.name);
+    j.at("funds").get_to(investor.funds);
+}
 
 //Private
 

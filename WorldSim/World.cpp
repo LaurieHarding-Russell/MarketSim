@@ -1,5 +1,6 @@
 #include "World.h"
 
+#include <iostream>
 // Public
 
 std::string World::reset() {
@@ -35,7 +36,8 @@ std::string World::registerTradingBot(std::string name, std::string host, std::s
 
 // ***** Private *****
 json World::asJson() {
-    json json = json::object();
-    json[year] = year;
-    return json;
+    return json {
+        {"year", year}, 
+        {"investor", investors}
+    };
 }

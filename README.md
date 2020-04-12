@@ -5,9 +5,9 @@ This is by no means an accurate representation of real life.
 
 ## Getting started
 1. Start up the program by running `bazel run Market`.
-2. To start/reset preform a get on `127.0.0.1/market/start` (Yup, I was too lazy to make a UI)
+2. To start/reset preform a get on `127.0.0.1:8080/market/start` (Yup, I was too lazy to make a UI)
 3. Start up trading bots.
-4. To simulate a year preform a get on `127.0.0.1/market/simulate-year`
+4. To simulate a year preform a get on `127.0.0.1:8080/market/simulate-year`
 
 
 ## Bots
