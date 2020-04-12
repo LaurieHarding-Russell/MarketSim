@@ -9,7 +9,6 @@
 #include <sstream>
 #include <string>
 
-#include "World.h"
 #include "MarketController.h"
 
 int main() {

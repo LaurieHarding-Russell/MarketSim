@@ -1,0 +1,6 @@
+
+flask>=1.0.0
+flask-jsonpify>=1.0.0
+flask-sqlalchemy>=1.0.0
+flask-restful>=0.3.7
+pytest>=1.0.0

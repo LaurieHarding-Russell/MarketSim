@@ -2,12 +2,8 @@
 #define PERSON_H
 
 class Person {
-    private:
-    float ;
-
     public:
-
-
-}
+    private:
+};
 
 #endif

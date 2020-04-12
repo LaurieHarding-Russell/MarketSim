@@ -5,7 +5,7 @@ cc_binary(
         "MarketController.h",
     ],
     deps = [
-        "World",
+        "//WorldSim:World",
         "@boost//:system",
         "@boost//:asio",
         "@boost//:date_time",
@@ -13,18 +13,4 @@ cc_binary(
         "@com_github_served//:served"
     ],
     visibility = ["//visibility:public"]
-)
-
-cc_library(
-    name = "World",
-    srcs = [
-        "MarketController.h",
-        "World.h",
-        "World.cpp",
-        "Company.h",
-        "Employee.h"
-    ],
-    deps = [
-        "@json//:json"
-    ]
 )
