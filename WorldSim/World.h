@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <time.h> 
 
 #include "single_include/nlohmann/json.hpp"
 
@@ -11,6 +12,7 @@
 #include "Company.h"
 #include "Investor.h"
 #include "Stock.h"
+#include "NameGenerator.h"
 
 using json = nlohmann::json;
 
@@ -30,10 +32,11 @@ class World {
         std::vector<Company> companies;
         std::vector<Investor> investors;
         int year;
+        std::map<std::string, Stock> stocks;
 
         void generateCompanies();
+        Company generateRandomCompany();
         json asJson();
-        std::map<std::string, Stock> stocks;
 };
 
 #endif

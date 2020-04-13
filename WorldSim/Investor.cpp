@@ -22,6 +22,7 @@ void Investor::alertYearEnd() {
     }
 }
 
+
 void to_json(json& j, const Investor& investor) {
     j = json{
         {"name", investor.name}, 

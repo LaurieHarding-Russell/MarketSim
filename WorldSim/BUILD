@@ -11,6 +11,7 @@ cc_library(
         "Stock.cpp",
         "World.h",
         "World.cpp",
+        "NameGenerator.h"
     ],
     deps = [
         "@json//:json",
