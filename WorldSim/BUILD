@@ -1,22 +1,53 @@
 cc_library(
     name = "World",
     srcs = [
-        "Company.h",
-        "Company.cpp",
-        "Investor.cpp",
-        "Investor.h",
-        "Person.h",
-        "Person.cpp",
-        "Stock.h",
-        "Stock.cpp",
         "World.h",
         "World.cpp",
-        "NameGenerator.h"
     ],
     deps = [
+        ":Capitalism",
+        ":NameGenerator",
         "@json//:json",
         "@boost//:asio",
         "@boost//:beast",
     ],
     visibility = ["//:__pkg__"]
+)
+
+cc_library(
+    name = "Capitalism",
+    srcs = [
+        "Company.h",
+        "Company.cpp",
+        "Investor.cpp",
+        "Investor.h",
+        "Stock.h",
+        "Stock.cpp",
+    ],
+    deps = [
+        ":Person",
+        "@json//:json",
+        "@boost//:asio",
+        "@boost//:beast",
+    ]
+)
+
+cc_library(
+    name = "Person",
+    srcs = [
+        "Person.h",
+        "Person.cpp",
+    ],
+    deps = [
+        "@json//:json",
+        "@boost//:asio",
+        "@boost//:beast",
+    ]
+)
+
+cc_library(
+    name = "NameGenerator",
+    srcs = [
+        "NameGenerator.h"
+    ]
 )

@@ -10,7 +10,7 @@ cc_binary(
         "@boost//:system",
         "@boost//:asio",
         "@boost//:date_time",
-        "@boost//:uuid",
+        "@boost//:uuid  ",
         "@com_github_served//:served"
     ],
     visibility = ["//visibility:public"]
