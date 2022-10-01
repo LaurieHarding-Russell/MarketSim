@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <time.h> 
+#include <random>
 
 #include "single_include/nlohmann/json.hpp"
 
@@ -20,6 +21,7 @@ using json = nlohmann::json;
 
 class World {
     public:
+        World();
         std::string getStockmarketData();
         std::string registerTradingBot(std::string name);
         std::string registerTradingBot(std::string name, std::string host, std::string port);
@@ -31,6 +33,7 @@ class World {
         int getYear();
 
     private:
+        std::default_random_engine generator;
         std::vector<Company> companies;
         std::vector<Investor> investors;
 
@@ -39,7 +42,6 @@ class World {
         std::map<std::string, Stock> stocks;
         
         void generateMap();
-        void generateCompanies();
         Company generateRandomCompany();
         json asJson();
 };

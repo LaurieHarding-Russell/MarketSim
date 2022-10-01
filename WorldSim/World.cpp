@@ -2,16 +2,19 @@
 
 // Public
 
+World::World() {
+    generator = std::default_random_engine(std::random_device{}());
+    reset();
+}
+
 std::string World::reset() {
-    srand (time(NULL));
 
     year = 0;
     companies.clear();
     investors.clear();
     
     generateMap();
-    generateCompanies();
-    
+     
     return getStockmarketData();
 }
 
@@ -50,13 +53,6 @@ json World::asJson() {
     };
 }
 
-void World::generateCompanies() {
-    int numberOfCompanies = rand() % 100 + 25;
-    for (int i = 0; i != numberOfCompanies; i++) {
-        companies.push_back(generateRandomCompany());
-    }
-}
-
 Company World::generateRandomCompany() {
     std::string newCompanyName = "";
     bool unique;
@@ -71,7 +67,8 @@ Company World::generateRandomCompany() {
         }
     } while(!unique);
     Company company = Company(newCompanyName);
-    company.setFunds(rand() % 1000);
+    std::uniform_int_distribution<int> fundsDistribution(0, 1000);
+    company.setFunds(fundsDistribution(generator));
     return company;
 }
 
@@ -81,5 +78,14 @@ void World::generateMap() {
         Coordinate().setX(100.0).setY(100.0)
     );
     
-    int generate = rand() % 100 + 25;
+    std::uniform_int_distribution<int> numberOfCompaniesDistribution(25, 125);
+
+
+    int numberOfCompanies = numberOfCompaniesDistribution(generator);
+
+    for (int i = 0; i != numberOfCompanies; i++) {
+        companies.push_back(generateRandomCompany());
+    }
+
+
 }

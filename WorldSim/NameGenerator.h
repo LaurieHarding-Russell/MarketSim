@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <random>
 
 namespace nameGenerator {
     const std::vector<std::string> names = {
@@ -148,22 +149,34 @@ namespace nameGenerator {
     //FIXME, I really hope none of these combos are that terrible...
     // FIXME, probably should make it related to industry etc.
     static std::string corporateNameGenerator() {
+        std::random_device rd;
+        std::default_random_engine generator = std::default_random_engine(rd());
+
+        std::uniform_int_distribution<int> oneInThree(0, 3);
+        
+        std::uniform_int_distribution<int> adjustivesToUseDistribtions(0, MAX_ADJUCTIVES + 1);
+
+        std::uniform_int_distribution<int> nameDistribtions(0, names.size());
+        std::uniform_int_distribution<int> animalDistribtions(0, animals.size());
+        std::uniform_int_distribution<int> thingDistribtions(0, things.size());
+        std::uniform_int_distribution<int> adjuctivesDistribtions(0, things.size());
+
         std::string name = "";
-        for (int i =0; i < rand() % (MAX_ADJUCTIVES + 1); i++) {
-            name = name + adjuctives[rand() % adjuctives.size()] + " ";
+        for (int i =0; i < adjustivesToUseDistribtions(generator); i++) {
+            name = name + adjuctives[adjuctivesDistribtions(generator)] + " ";
         }
 
-        switch(rand() % 3) {
+        switch(oneInThree(generator)) {
             case NAME_CASE:
                 // Adjuctives and names seems like a dangerous duo. 
                 name = "";
-                name = name + names[rand() % names.size()] + " ";
+                name = name + names[nameDistribtions(generator)] + " ";
             break;
             case ANIMAL_CASE:
-                name = name + animals[rand() % animals.size()] + " ";
+                name = name + animals[animalDistribtions(generator)] + " ";
             break;
             case OBJECT_CASE:
-                name = name + things[rand() % things.size()] + " ";
+                name = name + things[thingDistribtions(generator)] + " ";
             break;
         }
 

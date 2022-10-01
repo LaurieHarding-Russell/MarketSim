@@ -1,9 +1,15 @@
 #ifndef PERSON_H
 #define PERSON_H
 
-class Person {
-    public:
+#include "../Map/Resource.h"
+
+class Person: public Resource {
     private:
+    Coordinate coordinate;
+
+    public: 
+    std::string getType();
+    Coordinate getCoordinate();
 };
 
 #endif

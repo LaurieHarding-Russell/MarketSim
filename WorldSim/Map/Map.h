@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdexcept>
+#include <random>
 
 class Map {
 
@@ -15,12 +16,15 @@ class Map {
     Coordinate topLeft;
     Coordinate bottomRight;
     std::vector<Resource> resources;
-    
-    public:
+    std::default_random_engine generator;
 
+    public:
+    Map();
     Map(Coordinate topLeft, Coordinate bottomRight);
     bool validateResourceIsInMap(Resource resource);
     bool validateResourceIsInMap(Coordinate resource);
+
+    Coordinate getValidCoordinate();
 
     std::vector<Resource> getResources();
     void addResource(Resource resource);

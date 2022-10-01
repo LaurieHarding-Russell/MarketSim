@@ -1,9 +1,9 @@
-#ifndef FARM_LAND_H
-#define FARM_LAND_H
+#ifndef BUILDING_H
+#define BUILDING_H
 
-#include "Map/Resource.h"
+#include "../Map/Resource.h"
 
-class FarmLand: public Resource {
+class Building: public Resource {
     private:
     Coordinate coordinate;
 

@@ -9,7 +9,7 @@ cc_library(
         "Stock.cpp",
     ],
     deps = [
-        "//WorldSim/Humanity:Person",
+        "//WorldSim/Humanity:Humanity",
         "@json//:json",
         "@boost//:asio",
         "@boost//:beast",
