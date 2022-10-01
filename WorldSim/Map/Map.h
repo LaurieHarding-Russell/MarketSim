@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <time.h>
+#include <stdexcept>
 
 class Map {
 
@@ -17,25 +18,12 @@ class Map {
     
     public:
 
-    Map();
+    Map(Coordinate topLeft, Coordinate bottomRight);
+    bool validateResourceIsInMap(Resource resource);
+    bool validateResourceIsInMap(Coordinate resource);
 
-    std::vector<Resource> getResources() {
-        return resources;
-    }
-
-    static Map generateMap(Coordinate topLeft, Coordinate bottomRight) {
-        Map map = Map();
-        map.topLeft = topLeft;
-        map.bottomRight = bottomRight;
-
-        srand (time(NULL));
-        int numberOfResources = rand() % 1000 + 500;
-
-        for (int i = 0; i != numberOfResources; i++) {
-            map.resources.push_back(Resource());
-        }
-        return map;
-    }
+    std::vector<Resource> getResources();
+    void addResource(Resource resource);
 };
 
 #endif

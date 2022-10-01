@@ -1,4 +1,3 @@
-
 #include "Investor.h"
 
 Investor::Investor(std::string name) {

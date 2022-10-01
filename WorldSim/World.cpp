@@ -9,6 +9,7 @@ std::string World::reset() {
     companies.clear();
     investors.clear();
     
+    generateMap();
     generateCompanies();
     
     return getStockmarketData();
@@ -72,4 +73,13 @@ Company World::generateRandomCompany() {
     Company company = Company(newCompanyName);
     company.setFunds(rand() % 1000);
     return company;
+}
+
+void World::generateMap() {
+    this->worldMap = Map(
+        Coordinate().setX(0.0).setY(0.0),
+        Coordinate().setX(100.0).setY(100.0)
+    );
+    
+    int generate = rand() % 100 + 25;
 }

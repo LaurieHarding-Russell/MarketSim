@@ -9,10 +9,12 @@
 
 #include <map>
 
-#include "Company.h"
-#include "Investor.h"
-#include "Stock.h"
+#include "Capitalism/Company.h"
+#include "Capitalism/Investor.h"
+#include "Capitalism/Stock.h"
 #include "NameGenerator.h"
+#include "Map/Map.h"
+#include "Map/Coordinate.h"
 
 using json = nlohmann::json;
 
@@ -31,9 +33,12 @@ class World {
     private:
         std::vector<Company> companies;
         std::vector<Investor> investors;
-        int year;
-        std::map<std::string, Stock> stocks;
 
+        int year;
+        Map worldMap;
+        std::map<std::string, Stock> stocks;
+        
+        void generateMap();
         void generateCompanies();
         Company generateRandomCompany();
         json asJson();

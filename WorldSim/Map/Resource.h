@@ -2,23 +2,17 @@
 #define RESOURCE_H
 
 #include "Coordinate.h"
-
-enum ResouceType {
-    FARMABLE_LAND,
-    WATER,
-    METAL,
-    
-};
+#include <string>
+#include <stdexcept>
 
 class Resource {
-    private:
-    ResouceType type;
-    Coordinate coordinate;
-    
     public:
-    ResouceType getType();
+    virtual std::string getType() { 
+        throw std::invalid_argument( "Unimplemented getType" );
+    }
 
-    Coordinate getCoordinate();
-
+    virtual Coordinate getCoordinate() {
+        throw std::invalid_argument( "Unimplemented getCoordinate" );
+    }
 };
 #endif

@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "Person.h"
+#include "../Humanity/Person.h"
 
 #include "single_include/nlohmann/json.hpp"
 

@@ -1,9 +1,17 @@
 cc_test(
-  name = "mapTest",
+  name = "WorldTest",
   size = "small",
-  srcs = ["MapTest.cpp"],
+  srcs = ["WorldTest.cpp"],
   deps = [
-    "//WorldSim/Map:Map",
+    "//WorldSim:World",
     "@com_google_googletest//:gtest_main"
+    ],
+)
+
+cc_binary(
+  name = "mapLook",
+  srcs = ["PrettyMapPicture.cpp"],
+  deps = [
+    "//WorldSim:World"
     ],
 )
