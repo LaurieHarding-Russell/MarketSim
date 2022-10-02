@@ -34,9 +34,7 @@ class Investor: public Deserializable {
 
     std::string name;
     double funds;
-
-    std::string host;
-    std::string port;
+    
     std::string url;
 
     std::vector<Stock> stock;

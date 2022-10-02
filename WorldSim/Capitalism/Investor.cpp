@@ -7,8 +7,6 @@ Investor::Investor(std::string name) {
 
 Investor::Investor(std::string name, std::string host, std::string port) {
     this->name = name;
-    this->host = host;
-    this->port = port;
 }
 
 double Investor::getFunds() {

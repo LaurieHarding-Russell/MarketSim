@@ -32,14 +32,21 @@ class InvestorController {
 
                     json body = json::parse(req.body()); 
                     std::string name = body["name"];
-                    std::string host = body["host"];
-                    std::string port = body["port"];
                     
-                    if (host != "" && port != "") {
-                        res << world->registerTradingBot(name, host, port);
-                    } else {
-                        res << world->registerTradingBot(name);
-                    }
+                    res << world->registerTradingBot(name);
+                });
+            mux->handle(base + "/get-year")
+                .get([&](served::response & res, const served::request & req) {
+                    res << std::to_string(world->getYear());
+                });
+            mux->handle(base + "/get-list-of-companies")
+                .get([&](served::response & res, const served::request & req) {
+                    res << std::to_string(world->getYear());
+                });
+            // TODO: Note corrupt companies may "hide" bad financials.
+            mux->handle(base + "/get-company-financials")
+                .get([&](served::response & res, const served::request & req) {
+                    res << std::to_string(world->getYear());
                 });
         }
 };

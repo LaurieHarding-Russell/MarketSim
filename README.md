@@ -1,7 +1,11 @@
 # Market Simulator.
 This is just meant to be a fun project to help me understand the stockmarket better. It shouldn't be taken seriously. 
-
 This is by no means an accurate representation of real life.
+
+Its a fun challenge where bots try to predict my silly "world model" based off of limited and sometimes faulty data. 
+They will also have to predict each others strategies affects on the world economy. 
+
+Probably best not to have more then bot per player to keep things fair. Or not, have fun!
 
 ## Getting started
 1. Start up the program by running `bazel run Market`.
