@@ -4,12 +4,15 @@
 #include <string>
 
 #include "../Humanity/Person.h"
+#include "../Humanity/Building.h"
 
-#include "single_include/nlohmann/json.hpp"
+#include "../Deserializable/Deserializable.h"
 
 using json = nlohmann::json;
 
-class Company {
+
+// Might want business to have multiple locations. Keeping it simple for now.
+class Company: public Building {
     public:
     Company(std::string name);
     std::string getName();

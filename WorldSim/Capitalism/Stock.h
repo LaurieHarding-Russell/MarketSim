@@ -2,12 +2,9 @@
 #define STOCK_H
 
 #include "Company.h"
+#include "../Deserializable/Deserializable.h"
 
-#include "single_include/nlohmann/json.hpp"
-
-using json = nlohmann::json;
-
-class Stock {
+class Stock: public Deserializable {
     public:
 
     friend void to_json(json& j, const Stock& investor);

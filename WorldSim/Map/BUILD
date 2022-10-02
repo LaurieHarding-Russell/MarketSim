@@ -6,6 +6,7 @@ cc_library(
         "Coordinate.cpp",
         "Coordinate.h",
         "Resource.h",
+        "MapUtil.h",
     ],
     visibility = ["//:__subpackages__"]
 )

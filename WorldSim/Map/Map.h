@@ -15,7 +15,6 @@ class Map {
     private:
     Coordinate topLeft;
     Coordinate bottomRight;
-    std::vector<Resource> resources;
     std::default_random_engine generator;
 
     public:
@@ -25,9 +24,6 @@ class Map {
     bool validateResourceIsInMap(Coordinate resource);
 
     Coordinate getValidCoordinate();
-
-    std::vector<Resource> getResources();
-    void addResource(Resource resource);
 };
 
 #endif

@@ -19,17 +19,6 @@ Map::Map(Coordinate topLeft, Coordinate bottomRight) {
     this->bottomRight = bottomRight;
 }
 
-std::vector<Resource> Map::getResources() {
-    return resources;
-}
-
-void Map::addResource(Resource resource) {
-    if (validateResourceIsInMap(resource)) {
-        throw std::invalid_argument( "Resource outside of map added" );
-    }
-    this->resources.push_back(resource);
-}
-
 Coordinate Map::getValidCoordinate() {
     std::uniform_real_distribution<double> distributionX(topLeft.getX(), bottomRight.getX() - topLeft.getX());
     std::uniform_real_distribution<double> distributionY(topLeft.getY(), bottomRight.getY() - topLeft.getY());

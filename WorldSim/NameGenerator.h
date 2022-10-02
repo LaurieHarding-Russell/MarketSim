@@ -109,8 +109,12 @@ namespace nameGenerator {
         "Disk",
         "Duo",
         "Energy",
-        "Shield",
+        "Farm",
         "Science",
+        "Shield",
+        "Snowflake",
+        "Sword",
+        "Magic",
         "Math",
         "Music",
         "Paper",
@@ -121,20 +125,33 @@ namespace nameGenerator {
 
     const std::vector<std::string> adjuctives = {
         "Broken",
+        "Bulky"
+        "Cowardly"
         "Computing",
         "Calculating",
         "Cold",
-        "Dangerous"
+        "Dangerous",
+        "Daring",
+        "Devious"
+        "Despicable",
         "Flaming",
         "Giant",
+        "Grave",
+        "Gross",
         "Honorable",
-        "Hot"
+        "Hot",
         "Imperial",
         "Infinity",
         "Large",
+        "Limited",
+        "Loud",
         "Lucky",
+        "Muddy",
+        "Macro",
+        "Micro",
         "Sharp",
         "Small",
+        "Stony",
         "Unlimited"
     };
 

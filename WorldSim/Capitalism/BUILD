@@ -7,10 +7,12 @@ cc_library(
         "Investor.h",
         "Stock.h",
         "Stock.cpp",
+        "Consumer.h",
+        "Consumer.cpp"
     ],
     deps = [
         "//WorldSim/Humanity:Humanity",
-        "@json//:json",
+        "//WorldSim/Deserializable:Deserializable",
         "@boost//:asio",
         "@boost//:beast",
     ],

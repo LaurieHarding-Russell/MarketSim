@@ -8,7 +8,6 @@ cc_library(
         "//WorldSim/Map:Map",
         "//WorldSim/Capitalism:Capitalism",
         ":NameGenerator",
-        "@json//:json",
         "@boost//:asio",
         "@boost//:beast",
     ],

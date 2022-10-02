@@ -11,6 +11,8 @@ class Building: public Resource {
 
     std::string getType();
     Coordinate getCoordinate();
+
+    Building setCoordinate(Coordinate coordinate);
 };
 
 #endif

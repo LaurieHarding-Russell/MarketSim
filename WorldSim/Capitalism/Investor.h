@@ -9,8 +9,7 @@
 #include <boost/beast/version.hpp>
 #include <boost/asio/connect.hpp>
 #include <boost/asio/ip/tcp.hpp>
-
-#include "single_include/nlohmann/json.hpp"
+#include "../Deserializable/Deserializable.h"
 
 #include "Stock.h"
 
@@ -20,7 +19,7 @@ namespace net = boost::asio;        // from <boost/asio.hpp>
 using tcp = net::ip::tcp;           // from <boost/asio/ip/tcp.hpp>
 using json = nlohmann::json;
 
-class Investor {
+class Investor: public Deserializable {
     public:
     Investor(std::string name);
     Investor(std::string name, std::string host, std::string port);

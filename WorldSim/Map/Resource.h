@@ -5,6 +5,7 @@
 #include <string>
 #include <stdexcept>
 
+// FIXME, might want to rename
 class Resource {
     public:
     virtual std::string getType() { 

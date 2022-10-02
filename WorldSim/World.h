@@ -6,8 +6,6 @@
 #include <time.h> 
 #include <random>
 
-#include "single_include/nlohmann/json.hpp"
-
 #include <map>
 
 #include "Capitalism/Company.h"
@@ -16,10 +14,11 @@
 #include "NameGenerator.h"
 #include "Map/Map.h"
 #include "Map/Coordinate.h"
+#include "Deserializable/Deserializable.h"
 
 using json = nlohmann::json;
 
-class World {
+class World: public Deserializable{
     public:
         World();
         std::string getStockmarketData();

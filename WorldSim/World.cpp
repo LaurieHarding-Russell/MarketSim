@@ -69,23 +69,21 @@ Company World::generateRandomCompany() {
     Company company = Company(newCompanyName);
     std::uniform_int_distribution<int> fundsDistribution(0, 1000);
     company.setFunds(fundsDistribution(generator));
+    company.setCoordinate(worldMap.getValidCoordinate());
+
     return company;
 }
 
 void World::generateMap() {
-    this->worldMap = Map(
+    worldMap = Map(
         Coordinate().setX(0.0).setY(0.0),
         Coordinate().setX(100.0).setY(100.0)
-    );
-    
+    );    
     std::uniform_int_distribution<int> numberOfCompaniesDistribution(25, 125);
-
 
     int numberOfCompanies = numberOfCompaniesDistribution(generator);
 
     for (int i = 0; i != numberOfCompanies; i++) {
         companies.push_back(generateRandomCompany());
     }
-
-
 }
