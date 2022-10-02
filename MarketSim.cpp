@@ -13,6 +13,7 @@
 #include "InvestorController.h"
 
 int main() {
+	// fixme shared_ptr ?
     served::multiplexer* mux = new served::multiplexer();
 	World *world = new World();
 

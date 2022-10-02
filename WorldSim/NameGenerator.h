@@ -162,6 +162,12 @@ namespace nameGenerator {
     const int ANIMAL_CASE = 1;
     const int OBJECT_CASE = 2;
 
+    std::uniform_int_distribution<int> oneInThree(0, 3);        
+    std::uniform_int_distribution<int> adjustivesToUseDistribtions(0, MAX_ADJUCTIVES);
+    std::uniform_int_distribution<int> nameDistribtions(0, names.size() - 1);
+    std::uniform_int_distribution<int> animalDistribtions(0, animals.size() - 1);
+    std::uniform_int_distribution<int> thingDistribtions(0, things.size() - 1);
+    std::uniform_int_distribution<int> adjuctivesDistribtions(0, adjuctives.size() - 1);
 
     //FIXME, I really hope none of these combos are that terrible...
     // FIXME, probably should make it related to industry etc.
@@ -169,20 +175,10 @@ namespace nameGenerator {
         std::random_device rd;
         std::default_random_engine generator = std::default_random_engine(rd());
 
-        std::uniform_int_distribution<int> oneInThree(0, 3);
-        
-        std::uniform_int_distribution<int> adjustivesToUseDistribtions(0, MAX_ADJUCTIVES + 1);
-
-        std::uniform_int_distribution<int> nameDistribtions(0, names.size());
-        std::uniform_int_distribution<int> animalDistribtions(0, animals.size());
-        std::uniform_int_distribution<int> thingDistribtions(0, things.size());
-        std::uniform_int_distribution<int> adjuctivesDistribtions(0, things.size());
-
         std::string name = "";
         for (int i =0; i < adjustivesToUseDistribtions(generator); i++) {
             name = name + adjuctives[adjuctivesDistribtions(generator)] + " ";
         }
-
         switch(oneInThree(generator)) {
             case NAME_CASE:
                 // Adjuctives and names seems like a dangerous duo. 
@@ -196,8 +192,6 @@ namespace nameGenerator {
                 name = name + things[thingDistribtions(generator)] + " ";
             break;
         }
-
-        name.pop_back();
         return name;
     }
 };

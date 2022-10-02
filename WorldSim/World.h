@@ -5,6 +5,7 @@
 #include <string>
 #include <time.h> 
 #include <random>
+#include <iostream>
 
 #include <map>
 
@@ -33,7 +34,7 @@ class World: public Deserializable{
 
     private:
         std::default_random_engine generator;
-        std::vector<Company> companies;
+        std::vector<Company> companies; // FIXME, should probably be a set.
         std::vector<Investor> investors;
 
         int year;

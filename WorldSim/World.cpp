@@ -59,10 +59,9 @@ Company World::generateRandomCompany() {
     do {
         newCompanyName = nameGenerator::corporateNameGenerator();
         unique = true;
-        for (auto company: companies) {
+        for (Company company: companies) {
             if (company.getName() == newCompanyName) {
                 unique = false;
-                break;
             }
         }
     } while(!unique);
@@ -70,7 +69,6 @@ Company World::generateRandomCompany() {
     std::uniform_int_distribution<int> fundsDistribution(0, 1000);
     company.setFunds(fundsDistribution(generator));
     company.setCoordinate(worldMap.getValidCoordinate());
-
     return company;
 }
 
@@ -83,7 +81,8 @@ void World::generateMap() {
 
     int numberOfCompanies = numberOfCompaniesDistribution(generator);
 
-    for (int i = 0; i != numberOfCompanies; i++) {
+    for (int i = 0; i != 25; i++) {
+        Company company = generateRandomCompany();
         companies.push_back(generateRandomCompany());
     }
 }
