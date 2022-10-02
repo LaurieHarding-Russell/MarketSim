@@ -3,7 +3,7 @@
 #include <string>
 #include "../WorldSim/World.h"
 
-TEST(WorldTest, generatesAMapWithObjectsWithinBounds) {
+TEST(WorldTest, generateAWorldOnCreate) {
   World world = World();
 
   std::string returnValue = world.getStockmarketData();
@@ -17,4 +17,28 @@ TEST(WorldTest, generatesAMapWithObjectsWithinBounds) {
   EXPECT_GT(jsonValue["companies"][0]["funds"], -1);
   EXPECT_NE(jsonValue["companies"][0]["name"], "");
 
+}
+
+TEST(WorldTest, worldSimulateAYear) {
+  World world = World();
+
+  std::string returnValue = world.simulateYear();
+  EXPECT_GT(returnValue.length(), 0);
+  json jsonValue = json::parse(returnValue);
+
+  EXPECT_EQ(jsonValue["year"], 1);
+}
+
+TEST(WorldTest, worldTestReset) {
+  World world = World();
+
+  std::string returnValue = world.simulateYear();
+  EXPECT_GT(returnValue.length(), 0);
+  json jsonValue = json::parse(returnValue);
+
+  EXPECT_EQ(jsonValue["year"], 1);
+
+  returnValue = world.reset();
+  jsonValue = json::parse(returnValue);
+  EXPECT_EQ(jsonValue["year"], 0);
 }
