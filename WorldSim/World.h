@@ -15,21 +15,16 @@
 #include "NameGenerator.h"
 #include "Map/Map.h"
 #include "Map/Coordinate.h"
-#include "Deserializable/Deserializable.h"
 
-using json = nlohmann::json;
-
-class World: public Deserializable{
+class World {
     public:
         World();
-        std::string getStockmarketData();
-        std::string registerTradingBot(std::string name);
-        std::string registerTradingBot(std::string name, std::string host, std::string port);
+        Investor registerTradingBot(std::string name);
 
 
         // None trading api
-        std::string reset();
-        std::string simulateYear();
+        void reset();
+        void simulateYear();
         int getYear();
 
     private:
@@ -43,7 +38,6 @@ class World: public Deserializable{
         
         void generateMap();
         Company generateRandomCompany();
-        json asJson();
 };
 
 #endif

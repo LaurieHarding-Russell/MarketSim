@@ -23,9 +23,9 @@ http_archive(
 
 http_archive(
     name = "json",
-    strip_prefix = "json-456478b3c50d60100dbb1fb9bc931f370a2c1c28",
+    strip_prefix = "json-3.11.2",
     urls = [
-        "https://github.com/nlohmann/json/archive/456478b3c50d60100dbb1fb9bc931f370a2c1c28.tar.gz",
+        "https://github.com/nlohmann/json/archive/refs/tags/v3.11.2.tar.gz",
     ],
     build_file_content = """
 cc_library(
@@ -40,21 +40,25 @@ cc_library(
 # Trading bot dependencies
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-git_repository(
+http_archive(
     name = "rules_python",
-    remote = "https://github.com/bazelbuild/rules_python.git",
-    commit = "9d68f24659e8ce8b736590ba1e4418af06ec2552",
+    sha256 = "8c8fe44ef0a9afc256d1e75ad5f448bb59b81aba149b8958f02f7b3a98f5d9b4",
+    strip_prefix = "rules_python-0.13.0",
+    url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.13.0.tar.gz",
 )
 
 
-load("@rules_python//python:pip.bzl", "pip_repositories")
-pip_repositories()
+load("@rules_python//python:pip.bzl", "pip_parse")
 
-load("@rules_python//python:pip.bzl", "pip_import")
-pip_import(
+pip_parse(
    name = "my_deps",
-   requirements = "//TradingBot:requirements.txt",
+   requirements = "//:requirements_lock.txt",
 )
+
+load("@my_deps//:requirements.bzl", "install_deps")
+install_deps()
+
+
 
 # Tests
 http_archive(

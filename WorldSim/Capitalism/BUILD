@@ -12,7 +12,6 @@ cc_library(
     ],
     deps = [
         "//WorldSim/Humanity:Humanity",
-        "//WorldSim/Deserializable:Deserializable",
         "@boost//:asio",
         "@boost//:beast",
     ],

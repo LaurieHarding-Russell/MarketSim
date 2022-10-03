@@ -11,10 +11,25 @@ py_library(
     "PythonClient.py"
   ],
   deps = [
-    "requests"
+    requirement("requests")
   ],
   visibility = ["//visibility:public"]
 )
+
+cc_library(
+  name = "CppClient",
+  srcs = [
+    "CppClient.h"
+  ],
+  deps = [
+    "//Api:api",
+    "@boost//:system",
+    "@boost//:asio",
+    "@boost//:date_time",
+  ],
+  visibility = ["//visibility:public"]
+)
+
 
 py_binary(
     name = "exampleBot",

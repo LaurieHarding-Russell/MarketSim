@@ -27,10 +27,10 @@ class MarketController {
         }
 
         void init() {
-            mux->handle(base + "/data")
-                .get([&](served::response & res, const served::request & req) {
-                    res << world->getStockmarketData();
-                });
+            // mux->handle(base + "/data")
+            //     .get([&](served::response & res, const served::request & req) {
+            //         res << world->getStockmarketData();
+            //     });
 
             mux->handle(base + "/start")
                 .get([&](served::response & res, const served::request & req) {

@@ -6,10 +6,6 @@
 #include "../Humanity/Person.h"
 #include "../Humanity/Building.h"
 
-#include "../Deserializable/Deserializable.h"
-
-using json = nlohmann::json;
-
 
 // Might want business to have multiple locations. Keeping it simple for now.
 class Company: public Building {
@@ -18,9 +14,6 @@ class Company: public Building {
     std::string getName();
     
     Company* setFunds(double funds);
-
-    friend void to_json(json& j, const Company& investor);
-    friend void from_json(const json& j, Company& investor);
 
     private:
         std::string name;

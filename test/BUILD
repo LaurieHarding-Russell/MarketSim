@@ -8,6 +8,17 @@ cc_test(
     ],
 )
 
+cc_test(
+  name = "InvestorControllerTest",
+  size = "small",
+  srcs = ["InvestorControllerTest.cpp"],
+  deps = [
+    "//:InvestorController",
+    "//TradingBot:CppClient",
+    "@com_google_googletest//:gtest_main"
+    ],
+)
+
 cc_binary(
   name = "mapLook",
   srcs = ["PrettyMapPicture.cpp"],

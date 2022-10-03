@@ -9,6 +9,10 @@
 #include "single_include/nlohmann/json.hpp"
 
 #include "WorldSim/World.h"
+#include "Api/CompanyInvestorDto.h"
+#include "Api/RegisterInvestorDto.h"
+#include "Api/InvestorDto.h"
+#include "Api/BuyDto.h"
 
 using json = nlohmann::json;
 
@@ -30,23 +34,36 @@ class InvestorController {
             mux->handle(base + "/register")
                 .post([&](served::response & res, const served::request & req) {
 
-                    json body = json::parse(req.body()); 
-                    std::string name = body["name"];
+                    RegisterInvestorDto registerInvestorDto = json::parse(req.body()); 
+                    std::string name = registerInvestorDto.name;
                     
-                    res << world->registerTradingBot(name);
+                    Investor investor = world->registerTradingBot(name);
+                    InvestorDto investorDto;
+                    investorDto.funds = investor.getFunds();
+                    investorDto.name = investor.getName();
+                    res << investorDto.toString();
                 });
+
             mux->handle(base + "/get-year")
                 .get([&](served::response & res, const served::request & req) {
                     res << std::to_string(world->getYear());
                 });
+
             mux->handle(base + "/get-list-of-companies")
                 .get([&](served::response & res, const served::request & req) {
-                    res << std::to_string(world->getYear());
+                    res << "TODO";
                 });
+
             // TODO: Note corrupt companies may "hide" bad financials.
             mux->handle(base + "/get-company-financials")
                 .get([&](served::response & res, const served::request & req) {
-                    res << std::to_string(world->getYear());
+                    res << "TODO";
+                });
+
+            mux->handle(base + "/buy")
+                .post([&](served::response & res, const served::request & req) {
+                    BuyDto buyDto = json::parse(req.body()); 
+                    res << "TODO";
                 });
         }
 };

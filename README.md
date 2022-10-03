@@ -16,4 +16,10 @@ Probably best not to have more then bot per player to keep things fair. Or not, 
 
 ## Bots
 To start the example bot run `bazel run //TradingBot:exampleBot`.
-Go to the readme in TradingBot to get more details
+Go to the readme in TradingBot to get more detail
+
+
+# OTHER
+Add pip dependency:
+Add it to requirements.in 
+run `bazelisk run requirements.update`
