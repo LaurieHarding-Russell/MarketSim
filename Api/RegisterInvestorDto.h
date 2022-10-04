@@ -12,6 +12,11 @@ void from_json(const json&, RegisterInvestorDto&);
 struct RegisterInvestorDto: public Deserializable {
     public:
     std::string name;
+
+    std::string toString() {
+        json j = *this;
+        return j.dump();
+    }
 };
 
 

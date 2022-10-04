@@ -10,7 +10,6 @@
 class Investor {
     public:
     Investor(std::string name);
-    Investor(std::string name, std::string host, std::string port);
     double getFunds();
     std::string getName();
 

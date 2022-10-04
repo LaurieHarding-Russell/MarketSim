@@ -14,6 +14,11 @@ struct BuyDto: public Deserializable {
     int maxPrice;
     int maxShares;
     int maxFunds;
+
+    std::string toString() {
+        json j = *this;
+        return j.dump();
+    }
 };
 
 

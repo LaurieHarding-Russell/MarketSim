@@ -34,12 +34,14 @@ class MarketController {
 
             mux->handle(base + "/start")
                 .get([&](served::response & res, const served::request & req) {
-                    res << world->reset();
+                    world->reset();
+                    res << "";
                 });
 
             mux->handle(base + "/simulate-year")
                 .get([&](served::response & res, const served::request & req) {
-                    res << world->simulateYear();
+                    world->simulateYear();
+                    res << "";
                 });
 
             mux->handle(base + "/get-year")

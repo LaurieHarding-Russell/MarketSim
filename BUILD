@@ -5,15 +5,15 @@ cc_binary(
     ],
     deps = [
         ":MarketController",
-        ":InvestorController",
     ],
     visibility = ["//visibility:public"]
 )
 
 cc_library(
-    name = "InvestorController",
+    name = "MarketController",
     srcs = [
         "InvestorController.h",
+        "MarketController.h",
     ],
     deps = [
         "//Api:api",
@@ -27,23 +27,8 @@ cc_library(
     visibility = ["//visibility:public"]
 )
 
-cc_library(
-    name = "MarketController",
-    srcs = [
-        "MarketController.h",
-    ],
-    deps = [
-        "//Api:api",
-        "//WorldSim:World",
-        "@boost//:system",
-        "@boost//:asio",
-        "@boost//:date_time",
-        "@boost//:uuid  ",
-        "@com_github_served//:served"
-    ],
-    visibility = ["//visibility:public"]
-)
 
+# Other
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 
 compile_pip_requirements(

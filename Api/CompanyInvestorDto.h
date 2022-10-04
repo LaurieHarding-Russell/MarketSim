@@ -13,6 +13,11 @@ struct CompanyInvestorDto: public Deserializable {
     std::string name;
     int funds;
     int sketchiness;
+
+    std::string toString() {
+        json j = *this;
+        return j.dump();
+    }
 };
 
 void to_json(json& j, const CompanyInvestorDto& registerInvestor) {

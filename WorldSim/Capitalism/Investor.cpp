@@ -2,11 +2,8 @@
 
 Investor::Investor(std::string name) {
     // FIXME, think about this
-    Investor(name, "", "");
-}
-
-Investor::Investor(std::string name, std::string host, std::string port) {
     this->name = name;
+    this->funds = 1000.00;
 }
 
 double Investor::getFunds() {

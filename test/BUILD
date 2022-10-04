@@ -13,7 +13,7 @@ cc_test(
   size = "small",
   srcs = ["InvestorControllerTest.cpp"],
   deps = [
-    "//:InvestorController",
+    "//:MarketController",
     "//TradingBot:CppClient",
     "@com_google_googletest//:gtest_main"
     ],

@@ -12,6 +12,11 @@ struct CompanyDto: public Deserializable {
     public:
     std::string name;
     int funds;
+
+    std::string toString() {
+        json j = *this;
+        return j.dump();
+    }
 };
 
 

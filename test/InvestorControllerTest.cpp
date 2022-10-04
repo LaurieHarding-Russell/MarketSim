@@ -4,6 +4,7 @@
 #include "InvestorController.h"
 #include <served/served.hpp>
 #include <served/plugins.hpp>
+#include "../TradingBot/CppClient.h"
 
 
 TEST(InvestorControllerTest, registerHappyPath) {
@@ -17,7 +18,11 @@ TEST(InvestorControllerTest, registerHappyPath) {
   served::net::server server("127.0.0.1", "8080", *mux);
 
   server.run(10, false);  
-  sleep(1);
+  sleep(5);
+  RegisterInvestorDto registerInvestorDto;
+  registerInvestorDto.name = "ME";
+  InvestorDto investorDto = CppClient::registerBot(registerInvestorDto);
+  EXPECT_EQ(investorDto.name, registerInvestorDto.name);
   server.stop();
 
   delete world;

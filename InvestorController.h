@@ -33,7 +33,6 @@ class InvestorController {
         void init() {
             mux->handle(base + "/register")
                 .post([&](served::response & res, const served::request & req) {
-
                     RegisterInvestorDto registerInvestorDto = json::parse(req.body()); 
                     std::string name = registerInvestorDto.name;
                     

@@ -162,12 +162,12 @@ namespace nameGenerator {
     const int ANIMAL_CASE = 1;
     const int OBJECT_CASE = 2;
 
-    std::uniform_int_distribution<int> oneInThree(0, 3);        
-    std::uniform_int_distribution<int> adjustivesToUseDistribtions(0, MAX_ADJUCTIVES);
-    std::uniform_int_distribution<int> nameDistribtions(0, names.size() - 1);
-    std::uniform_int_distribution<int> animalDistribtions(0, animals.size() - 1);
-    std::uniform_int_distribution<int> thingDistribtions(0, things.size() - 1);
-    std::uniform_int_distribution<int> adjuctivesDistribtions(0, adjuctives.size() - 1);
+    static std::uniform_int_distribution<int> oneInThree(0, 3);        
+    static std::uniform_int_distribution<int> adjustivesToUseDistribtions(0, MAX_ADJUCTIVES);
+    static std::uniform_int_distribution<int> nameDistribtions(0, names.size() - 1);
+    static std::uniform_int_distribution<int> animalDistribtions(0, animals.size() - 1);
+    static std::uniform_int_distribution<int> thingDistribtions(0, things.size() - 1);
+    static std::uniform_int_distribution<int> adjuctivesDistribtions(0, adjuctives.size() - 1);
 
     //FIXME, I really hope none of these combos are that terrible...
     // FIXME, probably should make it related to industry etc.
