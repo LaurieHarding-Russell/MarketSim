@@ -16,7 +16,7 @@ using tcp = asio::ip::tcp;
 namespace CppClient {
 
     // FIXME, need make these insertable.
-    std::string HOST = "localhost:8080";
+    std::string HOST = "localhost";
     std::string INVESTOR_ENDPOINT = "/investor";
 
 
@@ -31,10 +31,9 @@ namespace CppClient {
     std::string getResponse(http::request<http::string_body> request) {
         asio::io_service io_service;
         tcp::resolver resolver(io_service);
-        tcp::resolver::query query(HOST, "http");
+        tcp::resolver::query query(HOST,"8080",tcp::resolver::query::canonical_name);
         tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
-        tcp::socket socket(io_service); // tcp::endpoint(tcp::v4(), 8080)
-        // tcp::socket socket(io_service, tcp::endpoint(tcp::v4(), 8080);
+        tcp::socket socket(io_service);
         asio::connect(socket, endpoint_iterator);
 
         // socket.connect(io_service);
@@ -53,7 +52,6 @@ namespace CppClient {
         request.target(INVESTOR_ENDPOINT + "/register");
         request.body() = registerInvestorDto.toString();
         request.prepare_payload();
-        std::cerr << "12222 \n";
 
         return json::parse(getResponse(request));
     }
