@@ -10,6 +10,7 @@
 // Might want business to have multiple locations. Keeping it simple for now.
 class Company: public Building {
     public:
+    Company();
     Company(std::string name);
     std::string getName();
     

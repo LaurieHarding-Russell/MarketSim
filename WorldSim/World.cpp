@@ -24,6 +24,10 @@ int World::getYear() {
     return year;
 }
 
+Company World::getyCompany(std::string name) {
+    return companies.find(name)->first;
+}
+
 // FIXME, do I want to do anything special if no callback url exists?
 Investor World::registerTradingBot(std::string name) {
     Investor investor = Investor(name); 
@@ -37,11 +41,11 @@ Company World::generateRandomCompany() {
     do {
         newCompanyName = nameGenerator::corporateNameGenerator();
         unique = true;
-        for (Company company: companies) {
-            if (company.getName() == newCompanyName) {
-                unique = false;
-            }
+        // for (Company company: companies) {
+        if (companies.find(newCompanyName) == companies.end()) {
+            unique = false;
         }
+        // }
     } while(!unique);
     Company company = Company(newCompanyName);
     std::uniform_int_distribution<int> fundsDistribution(0, 1000);
@@ -61,6 +65,6 @@ void World::generateMap() {
 
     for (int i = 0; i != 25; i++) {
         Company company = generateRandomCompany();
-        companies.push_back(generateRandomCompany());
+        companies[company.getName()] = company;
     }
 }

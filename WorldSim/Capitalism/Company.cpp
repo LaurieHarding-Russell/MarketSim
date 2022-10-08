@@ -1,5 +1,9 @@
 #include "Company.h"
 
+Company::Company() {
+
+}
+
 Company::Company(std::string name) {
     this->name = name;
 

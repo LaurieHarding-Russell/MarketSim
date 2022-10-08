@@ -2,6 +2,9 @@
 #define WORLD_H
 
 #include <vector>
+#include <unordered_set>
+#include <boost/functional/hash/hash.hpp>
+
 #include <string>
 #include <time.h> 
 #include <random>
@@ -20,7 +23,7 @@ class World {
     public:
         World();
         Investor registerTradingBot(std::string name);
-
+        Company getyCompany(std::string name);
 
         // None trading api
         void reset();
@@ -29,7 +32,7 @@ class World {
 
     private:
         std::default_random_engine generator;
-        std::vector<Company> companies; // FIXME, should probably be a set.
+        std::map<std::string, Company> companies;
         std::vector<Investor> investors;
 
         int year;

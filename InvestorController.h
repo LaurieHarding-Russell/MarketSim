@@ -13,6 +13,7 @@
 #include "Api/RegisterInvestorDto.h"
 #include "Api/InvestorDto.h"
 #include "Api/BuyDto.h"
+#include "Api/CompanyDto.h"
 
 using json = nlohmann::json;
 
@@ -45,7 +46,7 @@ class InvestorController {
 
             mux->handle(base + "/get-year")
                 .get([&](served::response & res, const served::request & req) {
-                    res << std::to_string(world->getYear());
+                    res << json{"year", world->getYear()};
                 });
 
             mux->handle(base + "/get-list-of-companies")
@@ -54,8 +55,10 @@ class InvestorController {
                 });
 
             // TODO: Note corrupt companies may "hide" bad financials.
-            mux->handle(base + "/get-company-financials")
+            mux->handle(base + "/get-company-financials/{companyName}")
                 .get([&](served::response & res, const served::request & req) {
+                    std::string company = req.params["companyName"];
+                    world->getyCompany(company);
                     res << "TODO";
                 });
 
