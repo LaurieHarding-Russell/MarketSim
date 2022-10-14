@@ -58,7 +58,7 @@ class InvestorController {
             mux->handle(base + "/get-company-financials/{companyName}")
                 .get([&](served::response & res, const served::request & req) {
                     std::string company = req.params["companyName"];
-                    world->getyCompany(company);
+                    // world->getyCompany(company);
                     res << "TODO";
                 });
 

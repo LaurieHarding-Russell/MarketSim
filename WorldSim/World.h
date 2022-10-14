@@ -23,7 +23,8 @@ class World {
     public:
         World();
         Investor registerTradingBot(std::string name);
-        Company getyCompany(std::string name);
+        Company getCompany(std::string name);
+        std::vector<Company> getCompanies();
 
         // None trading api
         void reset();

@@ -24,8 +24,15 @@ int World::getYear() {
     return year;
 }
 
-Company World::getyCompany(std::string name) {
+Company World::getCompany(std::string name) {
     return companies.find(name)->first;
+}
+
+std::vector<Company> World::getCompanies() {
+    // for( MapType::iterator it = m.begin(); it != m.end(); ++it ) {
+    //     v.push_back( it->second );
+    // }
+    return std::vector<Company>();
 }
 
 // FIXME, do I want to do anything special if no callback url exists?
