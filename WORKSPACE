@@ -68,3 +68,47 @@ http_archive(
   strip_prefix = "googletest-609281088cfefc76f9d0ce82e1ff6c30cc3591e5",
   sha256 = "5cf189eb6847b4f8fc603a3ffff3b0771c08eec7dd4bd961bfd45477dd13eb73"
 )
+
+
+
+
+
+
+# UI Dependencies
+http_archive(
+    name = "build_bazel_rules_nodejs",
+    sha256 = "c29944ba9b0b430aadcaf3bf2570fece6fc5ebfb76df145c6cdad40d65c20811",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.7.0/rules_nodejs-5.7.0.tar.gz"],
+)
+load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_dependencies")
+
+#Vendoring Node and Yarn.
+http_archive(
+    name = "vendored_node_linux_amd64",
+    build_file_content = """exports_files(["bin/node"])""",
+    sha256 = "cc9c3eed21755b490e5333ccab208ce15b539c35f64a764eeeae77c58746a7ff",
+    strip_prefix = "node-v15.0.1-linux-x64",
+    urls = ["https://nodejs.org/dist/v15.0.1/node-v15.0.1-linux-x64.tar.xz"],
+)
+
+http_archive(
+    name = "vendored_node_darwin_amd64",
+    build_file_content = """exports_files(["bin/node"])""",
+    sha256 = "78571df5b35d3ec73d7543332776bcb8cab3bc0e3abd12b1440fbcd01c74c055",
+    strip_prefix = "node-v15.0.1-darwin-x64",
+    urls = ["https://nodejs.org/dist/v15.0.1/node-v15.0.1-darwin-x64.tar.xz"],
+)
+
+
+register_toolchains("//toolchains:all")
+
+build_bazel_rules_nodejs_dependencies()
+
+load("@build_bazel_rules_nodejs//:index.bzl", "npm_install")
+
+# fixme pnpm with rules_js
+npm_install(
+    name = "npm_deps",
+    package_json = "//:package.json",
+    package_lock_json = "//:package-lock.json",
+)

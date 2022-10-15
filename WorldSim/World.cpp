@@ -4,6 +4,7 @@
 
 World::World() {
     generator = std::default_random_engine(std::random_device{}());
+    birthrateDistribution = std::uniform_int_distribution<int>(1, 100);
     reset();
 }
 
@@ -18,6 +19,15 @@ void World::reset() {
 
 void World::simulateYear() {
     year = year + 1;
+    // Companies employ
+
+    // Companies produce stuff.
+
+    // People consume stuff.
+
+    // People die.
+
+    // People are created.
 }
 
 int World::getYear() {
@@ -29,10 +39,19 @@ Company World::getCompany(std::string name) {
 }
 
 std::vector<Company> World::getCompanies() {
-    // for( MapType::iterator it = m.begin(); it != m.end(); ++it ) {
-    //     v.push_back( it->second );
-    // }
-    return std::vector<Company>();
+    std::vector<Company> companyList = std::vector<Company>();
+    for (const auto &company : companies) {
+        companyList.push_back( company.second );
+    }
+    return companyList;
+}
+
+std::vector<Consumer> World::getPeople() {
+    return people;
+}
+
+std::vector<Investor> World::getInvestors() {
+    return investors;
 }
 
 // FIXME, do I want to do anything special if no callback url exists?
@@ -65,13 +84,52 @@ void World::generateMap() {
     worldMap = Map(
         Coordinate().setX(0.0).setY(0.0),
         Coordinate().setX(100.0).setY(100.0)
-    );    
+    );
+    generateCompanies();
+
+}
+
+
+void World::generateCompanies() {
     std::uniform_int_distribution<int> numberOfCompaniesDistribution(25, 125);
 
     int numberOfCompanies = numberOfCompaniesDistribution(generator);
 
-    for (int i = 0; i != 25; i++) {
+    for (int i = 0; i != numberOfCompanies; i++) {
         Company company = generateRandomCompany();
         companies[company.getName()] = company;
     }
+}
+
+void World::generatePeople() {
+    std::uniform_int_distribution<int> numberOfCompaniesDistribution(500, 5000);
+
+    int numberOfPeople = numberOfCompaniesDistribution(generator);
+
+    for (int i = 0; i != numberOfPeople; i++) {
+        Consumer person = generateRandomPerson();
+        people.push_back(person);
+    }
+}
+
+Consumer World::generateRandomPerson() {
+    std::uniform_int_distribution<int> ageDistribution(1, 80);
+    std::uniform_int_distribution<int> healthDistribution(1, 80);
+    std::uniform_int_distribution<int> educationDistribution(1, 80);
+    std::uniform_int_distribution<int> boolDistribution(0, 1);
+    std::uniform_int_distribution<int> happyDistribution(0, 100);
+    std::uniform_int_distribution<int> intelligenceDistribution(0, 100);
+
+    Consumer::ConsumerFactory personFactory = Consumer::ConsumerFactory();
+    personFactory.age = ageDistribution(generator);
+    personFactory.health = healthDistribution(generator);
+    personFactory.education = educationDistribution(generator);
+    personFactory.fed = boolDistribution(generator);
+    personFactory.happy = happyDistribution(generator);
+    personFactory.intelligence = intelligenceDistribution(generator);
+    personFactory.sex = boolDistribution(generator);
+
+    personFactory.coordinate = worldMap.getValidCoordinate();
+
+    return personFactory.generateConsumer();
 }

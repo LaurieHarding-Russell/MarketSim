@@ -6,6 +6,9 @@ cc_library(
         "CompanyInvestorDto.h",
         "InvestorDto.h",
         "RegisterInvestorDto.h",
+        "WorldDto.h",
+        "PersonDto.h",
+        "CoordinateDto.h",
     ],
     deps = [
         "//Deserializable:Deserializable",

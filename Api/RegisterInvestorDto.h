@@ -13,7 +13,7 @@ struct RegisterInvestorDto: public Deserializable {
     public:
     std::string name;
 
-    std::string toString() {
+    std::string toString() override {
         json j = *this;
         return j.dump();
     }

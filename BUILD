@@ -14,6 +14,7 @@ cc_library(
     srcs = [
         "InvestorController.h",
         "MarketController.h",
+        "Transformers.h",
     ],
     deps = [
         "//Api:api",

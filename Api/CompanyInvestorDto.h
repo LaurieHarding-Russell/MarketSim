@@ -14,7 +14,7 @@ struct CompanyInvestorDto: public Deserializable {
     int funds;
     int sketchiness;
 
-    std::string toString() {
+    std::string toString() override {
         json j = *this;
         return j.dump();
     }

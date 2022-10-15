@@ -15,6 +15,7 @@
 #include "Capitalism/Company.h"
 #include "Capitalism/Investor.h"
 #include "Capitalism/Stock.h"
+#include "Capitalism/Consumer.h"
 #include "NameGenerator.h"
 #include "Map/Map.h"
 #include "Map/Coordinate.h"
@@ -24,7 +25,10 @@ class World {
         World();
         Investor registerTradingBot(std::string name);
         Company getCompany(std::string name);
+
         std::vector<Company> getCompanies();
+        std::vector<Consumer> getPeople();
+        std::vector<Investor> getInvestors();
 
         // None trading api
         void reset();
@@ -34,14 +38,21 @@ class World {
     private:
         std::default_random_engine generator;
         std::map<std::string, Company> companies;
+        std::vector<Consumer> people;
         std::vector<Investor> investors;
+
+        std::uniform_int_distribution<int> birthrateDistribution; 
 
         int year;
         Map worldMap;
         std::map<std::string, Stock> stocks;
         
         void generateMap();
+        void generateCompanies();
+        void generatePeople();
+
         Company generateRandomCompany();
+        Consumer generateRandomPerson();
 };
 
 #endif

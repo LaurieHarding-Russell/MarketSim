@@ -1,5 +1,5 @@
-#ifndef INVESTOR_DTO_H
-#define INVESTOR_DTO_H
+#ifndef COMPANY_DTO_H
+#define COMPANY_DTO_H
 
 #include "../Deserializable/Deserializable.h"
 #include <string>
@@ -13,7 +13,7 @@ struct CompanyDto: public Deserializable {
     std::string name;
     int funds;
 
-    std::string toString() {
+    std::string toString() override {
         json j = *this;
         return j.dump();
     }

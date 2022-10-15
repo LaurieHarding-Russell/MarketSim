@@ -10,6 +10,10 @@
 
 #include "WorldSim/World.h"
 
+#include "Api/WorldDto.h"
+
+#include "Transformers.h"
+
 using json = nlohmann::json;
 
 class MarketController {
@@ -18,8 +22,6 @@ class MarketController {
         World *world;
         served::multiplexer *mux;
         const std::string base = "/market";
-
-        
     public:
         MarketController(served::multiplexer *mux, World *world) {
             this->mux = mux;
@@ -27,10 +29,11 @@ class MarketController {
         }
 
         void init() {
-            // mux->handle(base + "/data")
-            //     .get([&](served::response & res, const served::request & req) {
-            //         res << world->getStockmarketData();
-            //     });
+            mux->handle(base + "/data")
+                .get([&](served::response & res, const served::request & req) {
+                    WorldDto worldDto = toWorldDto(world);
+                    res << worldDto.toString();
+                });
 
             mux->handle(base + "/start")
                 .get([&](served::response & res, const served::request & req) {
