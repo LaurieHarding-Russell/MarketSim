@@ -13,6 +13,8 @@
     },
     "scripts": {},
     "dependencies": {
+        "@types/openlayers": "^4.6.18",
+        "ol": "^7.1.0",
         "tslib": "^2.3.1"
     }
 }

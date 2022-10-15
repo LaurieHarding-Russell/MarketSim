@@ -13,6 +13,7 @@ ts_project(
     declaration = True,
     deps = [
         "@npm_deps//tslib",
+        "@npm_deps//ol",
     ]
 )
 
@@ -23,6 +24,7 @@ rollup_bundle(
     deps = [":app",
         "@npm_deps//rollup-plugin-commonjs",
         "@npm_deps//rollup-plugin-node-resolve",
+        "@npm_deps//ol",
     ],
 )
 # rollup_bundle(
