@@ -9,7 +9,7 @@ export class BusinessComponent extends HTMLElement {
   public set company(company: Company) {
     console.log(company);
     this.name.innerText = company.name;
-    this.funds.innerText = `${company.funds}`;
+    this.funds.innerText = `Funds: ${company.funds}`;
   }
 
   constructor() {

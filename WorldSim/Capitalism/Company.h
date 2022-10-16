@@ -15,6 +15,7 @@ class Company: public Building {
     std::string getName();
     
     Company* setFunds(double funds);
+    double getFunds();
 
     private:
         std::string name;

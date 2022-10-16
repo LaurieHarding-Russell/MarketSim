@@ -17,3 +17,7 @@ Company* Company::setFunds(double funds) {
     this->funds = funds;
     return this;
 }
+
+double Company::getFunds() {
+    return funds;
+}

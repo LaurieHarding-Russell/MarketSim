@@ -17,6 +17,7 @@ CoordinateDto toCoordinateDto(Coordinate coordinate) {
 CompanyDto toCompanyDto(Company company) {
     CompanyDto companyDto = CompanyDto();
     companyDto.name = company.getName();
+    companyDto.funds = company.getFunds();
     return companyDto;
 }
 
