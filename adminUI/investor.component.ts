@@ -2,31 +2,33 @@ import { Investor } from "./world";
 
 export class InvestorComponent extends HTMLElement {
   host = document.createElement('investor');
-  data = document.createElement('pre');
-
-  investor: Investor = {
-    name: "undefined",
-    funds: 0
-  };
+  data = document.createElement('div');
+  name = document.createElement('h3');
+  funds = document.createElement('span');
+  
+  public set investor(investor: Investor) {
+    this.name.innerText = investor.name;
+    this.funds.innerText = `Funds: ${investor.funds}`;
+  }
 
   constructor() {
       super();
 
       let shadow = this.attachShadow({mode: 'open'});
 
-      this.host.setAttribute('class','sign-in-bar');
+      this.host.setAttribute('class','investor');
+      this.data.appendChild(this.funds);
 
-      this.data.innerHTML = `
-        TODO:
-        gotta think about what to show.
+      const style = document.createElement('style');
+        style.textContent = `
+        investor {
+          display:block;
+          border-top: 2px solid yellow;
+        }
       `;
       
-      const style = document.createElement('style');
-      style.textContent = `
-      :host {
-        border-style: solid 
-      }
-    `;
+      this.host.appendChild(this.name);
+      this.host.appendChild(this.data);
     
     this.host.appendChild(this.data);
     const linkElem = document.createElement('link');

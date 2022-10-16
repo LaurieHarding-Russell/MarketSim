@@ -7,7 +7,6 @@ export class BusinessComponent extends HTMLElement {
   funds = document.createElement('span');
 
   public set company(company: Company) {
-    console.log(company);
     this.name.innerText = company.name;
     this.funds.innerText = `Funds: ${company.funds}`;
   }
@@ -24,7 +23,7 @@ export class BusinessComponent extends HTMLElement {
         style.textContent = `
         business {
           display:block;
-          border-top: solid;
+          border-top: 2px solid blue;
         }
       `;
       
