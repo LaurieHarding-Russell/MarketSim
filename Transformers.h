@@ -3,6 +3,7 @@
 
 #include "WorldSim/World.h"
 #include "Api/WorldDto.h"
+#include <functional>
 
 using json = nlohmann::json;
 // FIXME think about namespacing etc.
@@ -14,6 +15,13 @@ CoordinateDto toCoordinateDto(Coordinate coordinate) {
     return coordinateDto;
 }
 
+InvestorDto toInvestorDto(Investor investor) {
+    InvestorDto investorDto = InvestorDto();
+    investorDto.name = investor.getName();
+    investorDto.funds = investor.getFunds();
+    return investorDto;
+}
+
 CompanyDto toCompanyDto(Company company) {
     CompanyDto companyDto = CompanyDto();
     companyDto.name = company.getName();
@@ -21,12 +29,17 @@ CompanyDto toCompanyDto(Company company) {
     return companyDto;
 }
 
-std::vector<CompanyDto> toCompanyDtoList(std::vector<Company> companies) {
-    std::vector<CompanyDto> companyDtoList = std::vector<CompanyDto>();
-    for (const auto &company : companies) {
-        companyDtoList.push_back(toCompanyDto(company));
+/* Is this a little silly... yup... is it kind of fun? YUP!
+// D = dto 
+// T = other thing
+*/
+template <class T, class D>
+std::vector<D> toDtoList(std::vector<T> objects, std::function<D(T)> toDto) {
+    std::vector<D> dtoList = std::vector<D>();
+    for (const auto &object : objects) {
+        dtoList.push_back(toDto(object));
     }
-    return companyDtoList;
+    return dtoList;
 }
 
 PersonDto toPersonDto(Consumer person) {
@@ -47,7 +60,11 @@ std::vector<PersonDto> toPersonDtoList(std::vector<Consumer> people) {
 WorldDto toWorldDto(World* world) {
     WorldDto worldDto = WorldDto();
     worldDto.year = world->getYear();
-    worldDto.companies = toCompanyDtoList(world->getCompanies());
+    std::function<CompanyDto(Company)> companyTransformer = toCompanyDto;
+    worldDto.companies = toDtoList(world->getCompanies(), companyTransformer);
+
+    std::function<InvestorDto(Investor)> investorTransformer = toInvestorDto;
+    worldDto.investors = toDtoList(world->getInvestors(), investorTransformer);
     worldDto.people = toPersonDtoList(world->getPeople());
     return worldDto;
 }
