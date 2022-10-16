@@ -26,29 +26,27 @@ const businessData: HTMLCanvasElement = <HTMLCanvasElement>document.querySelecto
 
 updateData(peopleSource);
 
+let marketService = MarketService.Instance;
 
 // FIXME, webcomponent maybe?
 let refreshButton = document.querySelector("#refresh");
 if (!refreshButton) throw "oh no hacky 1!";
 refreshButton.addEventListener("click", async() => {
-  let marketService = MarketService.Instance;
-  let world: World = JSON.parse(await (await marketService.getData()).text());
+  let world: World = await marketService.getData();
   updateVisibleData(world, peopleSource)
 });
 
 let simulateButton = document.querySelector("#simulate");
 if (!simulateButton) throw "oh no! hacky 2!";
 simulateButton.addEventListener("click", async() => {
-    let marketService = MarketService.Instance;
-    let world: World = JSON.parse(await (await marketService.simulateYear()).text());
+    let world: World = await marketService.simulateYear();
     updateVisibleData(world, peopleSource)
 });
 
 let resetButton = document.querySelector("#reset");
 if (!resetButton) throw "oh no! hacky 3!";
 resetButton.addEventListener("click", async() => {
-    let marketService = MarketService.Instance;
-    let world: World = JSON.parse(await (await marketService.reset()).text());
+    let world: World = await marketService.reset();
     updateVisibleData(world, peopleSource)
 });
 
@@ -66,7 +64,7 @@ let map = new Map({
 
 async function updateData(peopleSource: VectorSource) {
     let marketService = MarketService.Instance;
-    let world: World = JSON.parse(await (await marketService.getData()).text());
+    let world: World = await marketService.getData();
     updateVisibleData(world, peopleSource)
 }
 
@@ -78,16 +76,19 @@ function updateVisibleData(world: World, peopleSource: VectorSource) {
         peopleSource.addFeature(personFeature)
     })
 
+    investorData.innerHTML = "";
     world.investors.forEach(investor => {
-      investorData.innerHTML = "";
-      const investorNode = document.createElement("investor-component");
+      const investorNode: InvestorComponent = document.createElement("investor-component") as InvestorComponent;
+      investorNode.investor = investor;
       investorData.appendChild(investorNode);
     })
 
     // businessData
+    businessData.innerHTML = "";
     world.companies.forEach(company => {
-      businessData.innerHTML = "";
-      const companyNode = document.createElement("business-component");
+      const companyNode: BusinessComponent = document.createElement("business-component") as BusinessComponent;
+      console.log(company, companyNode);
+      companyNode.company = company;
       businessData.appendChild(companyNode);
     })
 } 
