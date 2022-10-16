@@ -14,6 +14,7 @@ void World::reset() {
     companies.clear();
     investors.clear();
     
+    generatePeople();
     generateMap();
 }
 
@@ -67,11 +68,9 @@ Company World::generateRandomCompany() {
     do {
         newCompanyName = nameGenerator::corporateNameGenerator();
         unique = true;
-        // for (Company company: companies) {
-        if (companies.find(newCompanyName) == companies.end()) {
+        if (companies.count(newCompanyName)) {
             unique = false;
         }
-        // }
     } while(!unique);
     Company company = Company(newCompanyName);
     std::uniform_int_distribution<int> fundsDistribution(0, 1000);
@@ -86,7 +85,6 @@ void World::generateMap() {
         Coordinate().setX(100.0).setY(100.0)
     );
     generateCompanies();
-
 }
 
 

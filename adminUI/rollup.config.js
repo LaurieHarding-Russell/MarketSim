@@ -1,12 +1,11 @@
-
-const node = require('rollup-plugin-node-resolve');
-// const commonjs = require('rollup-plugin-commonjs');
+import cjs from '@rollup/plugin-commonjs';
+import node from '@rollup/plugin-node-resolve';
 
 module.exports = {
   plugins: [
     node({
       mainFields: ['browser', 'es2015', 'module', 'jsnext:main', 'main'],
     }),
-    // commonjs(),
+    cjs(),
   ],
 };

@@ -29,8 +29,11 @@ class MarketController {
         }
 
         void init() {
+            std::cout << "Market Controller Init\n";
+
             mux->handle(base + "/data")
                 .get([&](served::response & res, const served::request & req) {
+                    std::cout << "test\n";
                     WorldDto worldDto = toWorldDto(world);
                     res << worldDto.toString();
                 });
@@ -44,7 +47,8 @@ class MarketController {
             mux->handle(base + "/simulate-year")
                 .get([&](served::response & res, const served::request & req) {
                     world->simulateYear();
-                    res << "";
+                    WorldDto worldDto = toWorldDto(world);
+                    res << worldDto.toString();
                 });
 
             mux->handle(base + "/get-year")

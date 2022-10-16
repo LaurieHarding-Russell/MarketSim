@@ -22,25 +22,12 @@ rollup_bundle(
     entry_point = ":main.ts",
     config_file = "rollup.config.js",
     deps = [":app",
-        "@npm_deps//rollup-plugin-commonjs",
-        "@npm_deps//rollup-plugin-node-resolve",
+        "@npm_deps//@rollup/plugin-commonjs",
+        "@npm_deps//@rollup/plugin-node-resolve",
         "@npm_deps//ol",
+        "@npm_deps//tslib",
     ],
 )
-# rollup_bundle(
-#     name = "bundle",
-#     deps = [
-#         "app",
-#         "@npm_deps//rollup-plugin-commonjs",
-#         "@npm_deps//rollup-plugin-node-resolve",
-#     ],
-#     sourcemap = "inline",
-#     entry_points = {
-#         entry_point: "index",
-#     },
-#     output_dir = True,
-# )
-
 
 lessc(
     name = "styles",
@@ -85,5 +72,9 @@ pkg_web(
 http_server(
     name = "server",
     data = [":package"],
-    templated_args = ["adminUI/package"],
+    templated_args = [
+        "-p 4200", 
+        "-P http://localhost:8080",
+        "adminUI/package",
+    ],
 )
