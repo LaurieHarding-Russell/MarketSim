@@ -45,6 +45,7 @@ std::vector<PersonDto> toPersonDtoList(std::vector<Consumer> people) {
 
 WorldDto toWorldDto(World* world) {
     WorldDto worldDto = WorldDto();
+    worldDto.year = world->getYear();
     worldDto.companies = toCompanyDtoList(world->getCompanies());
     worldDto.people = toPersonDtoList(world->getPeople());
     return worldDto;
