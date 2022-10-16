@@ -4,7 +4,7 @@
         "@bazel/rollup": "5.0.2",
         "@bazel/typescript": "5.0.2",
         "html-insert-assets": "0.14.2",
-        "http-server": "0.11.1",
+        "http-server": "14.1.1",
         "less": "4.1.2",
         "rollup": "2.79.0",
         "@rollup/plugin-commonjs": "^22.0.2",
