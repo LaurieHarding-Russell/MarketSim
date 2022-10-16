@@ -5,10 +5,10 @@ cc_library(
         "Person.cpp",
         "Building.h",
         "Building.cpp",
+        "ProductType.h",
     ],
     deps = [
         "//WorldSim/Map:Map",
-        "@json//:json",
         "@boost//:asio",
         "@boost//:beast",
     ],

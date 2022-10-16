@@ -2,6 +2,7 @@
 #define PERSON_H
 
 #include "../Map/Resource.h"
+#include "../Map/MapUtil.h"
 #include <random>
 
 class Person: public Resource {
@@ -13,7 +14,9 @@ class Person: public Resource {
     int health;
     int education;
     int intelligence;
+    int coruption;
     int age;
+    double travelAbility;
 
     std::default_random_engine generator;
 
@@ -26,10 +29,20 @@ class Person: public Resource {
 
     bool wantToEat();
     void feed();
+    bool isFed();
+    bool canProduceKid();
     bool wantToBeEntertain();
     bool timeToDie();
     void simulateTurn();
-    void generateKid();
+    Person generateKid();
+    int getIntelligence();
+    int getCoruption();
+    double getProductivityScore();
+    double getPercievedProductivityScore(int viewersIntelligence);
+    bool isAlive();
+    bool canTravelTo(Coordinate);
+
+    bool shouldDie();
 };
 
 #endif

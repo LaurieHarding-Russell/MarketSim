@@ -2,10 +2,11 @@
 #define COMPANY_H
 
 #include <string>
+#include <algorithm>
 
-#include "../Humanity/Person.h"
+#include "./Consumer.h"
 #include "../Humanity/Building.h"
-
+#include "../Humanity/ProductType.h"
 
 // Might want business to have multiple locations. Keeping it simple for now.
 class Company: public Building {
@@ -17,10 +18,36 @@ class Company: public Building {
     Company* setFunds(double funds);
     double getFunds();
 
+    Company* setProductType(ProductType productType);
+
+    Consumer getCeo();
+    std::vector<Consumer> getEmployees();
+
+    void evaluateCeo();
+    void removePervicedWorstEmployees();
+    // FIXME static blaa
+    // bool employeeSortOperator (Consumer i, Consumer j);
+    static bool employeeSortOperator (Consumer i, Consumer j);
+    void hireBestPercivedBestEmployees(std::vector<Consumer> unemployed);
+
+    double calculateEmployeeSalary();
+    void paySalaries();
+    void buyUpgrades();
+    void produce();
+
+    bool canSellProduct(ProductType product, double amount);
+    // returns cost;
+    double sellProduces(double amount);
+
     private:
         std::string name;
-        Person employees;
+        Consumer ceo;
+        std::vector<Consumer> employees;
         double funds;
+        ProductType produces;
+        double amountProduced;
+        double equipmentModifier;
+        double productStored;
         
 };
 

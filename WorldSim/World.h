@@ -11,6 +11,7 @@
 #include <iostream>
 
 #include <map>
+#include <optional>
 
 #include "Capitalism/Company.h"
 #include "Capitalism/Investor.h"
@@ -51,8 +52,14 @@ class World {
         void generateCompanies();
         void generatePeople();
 
+        std::vector<Consumer> getUnemployedPeople();
+        std::vector<Consumer> getUnemployedPeopleWithinTravelingDistance(Coordinate coordinate);
+
+        std::optional<Company> getClosestBusinessThatSellsX(Consumer person, ProductType type, double amount);
+    
         Company generateRandomCompany();
         Consumer generateRandomPerson();
+
 };
 
 #endif

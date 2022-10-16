@@ -99,7 +99,6 @@ function updateCompanies(world: World): void {
   businessData.innerHTML = "";
   world.companies.forEach(company => {
     const companyNode: BusinessComponent = document.createElement("business-component") as BusinessComponent;
-    console.log(company, companyNode);
     companyNode.company = company;
     businessData.appendChild(companyNode);
   });

@@ -21,15 +21,44 @@ void World::reset() {
 
 void World::simulateYear() {
     year = year + 1;
-    // Companies employ
+    // Companies fire
+    for (auto &companyPair : companies) {
+        Company company = companyPair.second;
+        company.evaluateCeo();
+        company.removePervicedWorstEmployees();
+        company.hireBestPercivedBestEmployees(
+            getUnemployedPeopleWithinTravelingDistance(company.getCoordinate())
+        );
+        company.paySalaries();
+        company.buyUpgrades();
+        company.produce();
+    }
 
-    // Companies produce stuff.
+    for (auto &person : people) {
+        if (!person.isFed() && person.getFunds() > 1) {
+            // FIXME, amount to feed dependent on person perhaps?
+            std::optional<Company> foodStore = getClosestBusinessThatSellsX(person, FOOD, 1);
+            if (foodStore.has_value()) {
+                Company store = foodStore.value_or(Company());
+                store.sellProduces(1);
+                person.adjustFunds(-1);
+            }
+        }
 
-    // People consume stuff.
+        // FIXME, remove dead people 
+        // if (!person.isAlive()) {
+        //     // Trusting boost deals with the edge cases...
+        //     people.erase(std::remove(people.begin(), people.end(), person), people.end());
+        // }
 
-    // People die.
-
-    // People are created.
+        if (person.canProduceKid() && birthrateDistribution(generator) == 1) {
+            // TODO, setup the kid to succeed.
+            people.push_back(
+                Consumer(person.generateKid())
+            );
+        }
+    }
+    // Remove dead companies
 }
 
 int World::getYear() {
@@ -42,7 +71,7 @@ Company World::getCompany(std::string name) {
 
 std::vector<Company> World::getCompanies() {
     std::vector<Company> companyList = std::vector<Company>();
-    for (const auto &company : companies) {
+    for (auto &company : companies) {
         companyList.push_back( company.second );
     }
     return companyList;
@@ -75,6 +104,10 @@ Company World::generateRandomCompany() {
     } while(!unique);
     Company company = Company(newCompanyName);
     std::uniform_int_distribution<int> fundsDistribution(0, 1000);
+
+    std::uniform_int_distribution<int> productTypeDistribution(0, 4);
+    company.setProductType(ALL_PRODUCTS.at(productTypeDistribution(generator)));
+
     company.setFunds(fundsDistribution(generator));
     company.setCoordinate(worldMap.getValidCoordinate());
     return company;
@@ -130,4 +163,39 @@ Consumer World::generateRandomPerson() {
     personFactory.coordinate = worldMap.getValidCoordinate();
 
     return personFactory.generateConsumer();
+}
+
+std::vector<Consumer> World::getUnemployedPeople() {
+    std::vector<Consumer> unemployed = std::vector<Consumer>();
+    for (auto &person : people) {
+        if (person.getWork() == "") {
+            unemployed.push_back(person);
+        }
+    }
+    return unemployed;
+}
+
+std::vector<Consumer> World::getUnemployedPeopleWithinTravelingDistance(Coordinate coordinate) {
+    std::vector<Consumer> employable = std::vector<Consumer>();
+    std::vector<Consumer> unemployed = getUnemployedPeople();
+    
+    for (auto &person : unemployed) {
+        if (person.canTravelTo(coordinate)) {
+            employable.push_back(person);
+        }
+    }
+    return employable;
+}
+
+// TODO, find all and get closest. Might add prices of products at some point. Think about amount
+std::optional<Company> World::getClosestBusinessThatSellsX(Consumer person, ProductType type, double amount) {
+    
+    for (auto &companyPair : companies) {
+        if (person.canTravelTo(companyPair.second.getCoordinate()) &&
+            companyPair.second.canSellProduct(type, amount)
+        ) {
+            return companyPair.second;
+        }
+    }
+    return std::nullopt;
 }

@@ -1,5 +1,6 @@
 #include "Building.h"
 
+// FIXME
 std::string Building::getType() {
     return "FarmLand";
 }

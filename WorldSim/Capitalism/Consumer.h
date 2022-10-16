@@ -1,17 +1,22 @@
 #ifndef CONSUMER_H
 #define CONSUMER_H
 
-#include "Company.h"
+#include "../Humanity/Person.h"
 
 class Consumer: public Person {
     private:
     int funds;
+    std::string worksFor;
 
     public:
     Consumer();
+    Consumer(Person person);
     int getFunds();
     int adjustFunds(int amount);
     bool canRemoveFunds(int amount);
+
+    void setWork(std::string work);
+    std::string getWork();
 
 
     class ConsumerFactory {
