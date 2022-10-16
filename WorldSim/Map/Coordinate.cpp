@@ -5,7 +5,7 @@ double Coordinate::getX() {
 }
 
 double Coordinate::getY() {
-    return x;
+    return y;
 }
 
 Coordinate Coordinate::setX(double x) {

@@ -14,8 +14,9 @@ void World::reset() {
     companies.clear();
     investors.clear();
     
-    generatePeople();
     generateMap();
+    generatePeople();
+    generateCompanies();
 }
 
 void World::simulateYear() {
@@ -84,7 +85,6 @@ void World::generateMap() {
         Coordinate().setX(0.0).setY(0.0),
         Coordinate().setX(100.0).setY(100.0)
     );
-    generateCompanies();
 }
 
 

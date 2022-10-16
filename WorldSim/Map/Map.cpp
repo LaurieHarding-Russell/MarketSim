@@ -20,8 +20,8 @@ Map::Map(Coordinate topLeft, Coordinate bottomRight) {
 }
 
 Coordinate Map::getValidCoordinate() {
-    std::uniform_real_distribution<double> distributionX(topLeft.getX(), bottomRight.getX() - topLeft.getX());
-    std::uniform_real_distribution<double> distributionY(topLeft.getY(), bottomRight.getY() - topLeft.getY());
+    std::uniform_real_distribution<double> distributionX(topLeft.getX(), bottomRight.getX());
+    std::uniform_real_distribution<double> distributionY(topLeft.getY(), bottomRight.getY());
 
     return Coordinate()
         .setX(distributionX(generator))

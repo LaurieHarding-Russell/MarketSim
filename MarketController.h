@@ -33,7 +33,6 @@ class MarketController {
 
             mux->handle(base + "/data")
                 .get([&](served::response & res, const served::request & req) {
-                    std::cout << "test\n";
                     WorldDto worldDto = toWorldDto(world);
                     res << worldDto.toString();
                 });
