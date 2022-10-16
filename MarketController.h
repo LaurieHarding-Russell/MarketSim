@@ -37,7 +37,7 @@ class MarketController {
                     res << worldDto.toString();
                 });
 
-            mux->handle(base + "/start")
+            mux->handle(base + "/reset")
                 .get([&](served::response & res, const served::request & req) {
                     world->reset();
                     res << "";
