@@ -49,14 +49,6 @@ PersonDto toPersonDto(Consumer person) {
     return personDto;
 }
 
-std::vector<PersonDto> toPersonDtoList(std::vector<Consumer> people) {
-    std::vector<PersonDto> peopleDtoList = std::vector<PersonDto>();
-    for (const auto &person : people) {
-        peopleDtoList.push_back(toPersonDto(person));
-    }
-    return peopleDtoList;
-}
-
 WorldDto toWorldDto(World* world) {
     WorldDto worldDto = WorldDto();
     worldDto.year = world->getYear();
@@ -65,7 +57,9 @@ WorldDto toWorldDto(World* world) {
 
     std::function<InvestorDto(Investor)> investorTransformer = toInvestorDto;
     worldDto.investors = toDtoList(world->getInvestors(), investorTransformer);
-    worldDto.people = toPersonDtoList(world->getPeople());
+
+    std::function<PersonDto(Consumer)> toPersonTransformer = toPersonDto;
+    worldDto.people = toDtoList(world->getPeople(), toPersonTransformer);
     return worldDto;
 }
 
