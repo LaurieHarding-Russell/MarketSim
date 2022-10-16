@@ -20,7 +20,14 @@ export class MarketService {
     }
 
     simulateYear(): Promise<Response> {
-        return fetch('market/data', {
+        return fetch('market/simulate-year', {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            method: 'GET'
+        });
+    }
+
+    reset(): Promise<Response> {
+        return fetch('market/reset', {
             headers: { "Content-Type": "application/json; charset=utf-8" },
             method: 'GET'
         });

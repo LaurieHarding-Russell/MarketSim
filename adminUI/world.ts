@@ -2,6 +2,7 @@ export interface World {
   companies: Array<Company>;
   people: Array<Person>;
   investors: Array<Investor>;
+  year: number;
 }
 
 export interface Company {
@@ -20,5 +21,6 @@ export interface Person {
 }
 
 export interface Investor {
-
+  name: string;
+  funds: number;
 }
