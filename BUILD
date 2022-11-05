@@ -28,7 +28,6 @@ cc_library(
     visibility = ["//visibility:public"]
 )
 
-
 # Other
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 
@@ -37,4 +36,14 @@ compile_pip_requirements(
     extra_args = ["--allow-unsafe"],
     requirements_in = "requirements.in",
     requirements_txt = "requirements_lock.txt",
+)
+
+# Swagger
+load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_gen")
+
+openapi_gen(
+  name = "investor-client-src",
+  language = "python",
+  spec = "investorSwagger.yaml",
+  visibility = ["//visibility:public"]
 )

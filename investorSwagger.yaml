@@ -1,0 +1,123 @@
+swagger: "2.0"
+info:
+  version: 0.0.1
+  title: Swagger MarketSim Investor
+  license:
+    name: MIT
+host: localhost:8080
+basePath: /investor
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /register:
+    post:
+      summary: Create a trader bot
+      operationId: register
+      tags:
+        - investor
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            $ref: '#/definitions/RegisterInvestorDto'
+      responses:
+        "200":
+          description: investor details
+          schema:
+            $ref: '#/definitions/InvestorDto'
+  /get-year:
+    get:
+      summary: get the year
+      operationId: getYear
+      tags:
+        - investor
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/YearDto'
+  /get-list-of-companies:
+    get:
+      summary: get companies
+      operationId: getCompanies
+      tags:
+        - investor
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/CompanyInvestorsDto'
+  /buy:
+    post:
+      summary: Create a trader bot
+      operationId: register
+      tags:
+        - investor
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            $ref: '#/definitions/BuyDto'
+      responses:
+        "200":
+          description: investor details
+          schema:
+            $ref: '#/definitions/PurchaseDto'
+definitions:
+  RegisterInvestorDto:
+    type: "object"
+    properties:
+      name:
+        type: string
+  InvestorDto:
+    type: "object"
+    properties:
+      name:
+        type: string
+  YearDto:
+    type: "object"
+    properties:
+      year:
+        type: string
+  BuyDto:
+    type: "object"
+    properties:
+      name:
+        type: string
+      maxPrice:
+        type: number
+      maxShares:
+        type: number
+      maxCash:
+        type: number
+  PurchaseDto:
+    type: "object"
+    properties:
+      name:
+        type: string
+      numberOfShares:
+        type: number
+      averageSharePrice:
+        type: number
+  CompanyInvestorDto:
+    type: "object"
+    properties:
+      name:
+        type: string
+      funds:
+        type: string
+      sketchiness:
+        type: string
+  CompanyInvestorsDto:
+    type: "object"
+    properties:
+      companies:
+        type: array
+        items:
+          $ref: '#/definitions/CompanyInvestorDto'
