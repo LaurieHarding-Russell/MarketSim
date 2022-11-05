@@ -27,6 +27,7 @@ class Person: public Resource {
     std::string getType();
     Coordinate getCoordinate();
 
+    int getEducation();
     bool wantToEat();
     void feed();
     bool isFed();
@@ -34,7 +35,6 @@ class Person: public Resource {
     bool wantToBeEntertain();
     bool timeToDie();
     void simulateTurn();
-    Person generateKid();
     int getIntelligence();
     int getCoruption();
     double getProductivityScore();

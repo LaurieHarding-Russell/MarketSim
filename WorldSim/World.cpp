@@ -45,17 +45,16 @@ void World::simulateYear() {
             }
         }
 
-        // FIXME, remove dead people 
-        // if (!person.isAlive()) {
-        //     // Trusting boost deals with the edge cases...
-        //     people.erase(std::remove(people.begin(), people.end(), person), people.end());
-        // }
-
         if (person.canProduceKid() && birthrateDistribution(generator) == 1) {
-            // TODO, setup the kid to succeed.
+            // TODO, setup the kid to succeed... and uh multiple parents?
             people.push_back(
-                Consumer(person.generateKid())
+                Consumer(ConsumerUtil::generateKid(person, person))
             );
+        }
+    }
+    for (int i = people.size() - 1; i != 0; i--) {
+        if (!people.at(i).isAlive()) {
+            people.erase(people.begin() + i);
         }
     }
     // Remove dead companies

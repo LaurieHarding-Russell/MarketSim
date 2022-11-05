@@ -42,6 +42,10 @@ int Person::getIntelligence() {
     return intelligence;
 }
 
+int Person::getEducation() {
+    return education;
+}
+
 int Person::getCoruption() {
     return coruption;
 }
@@ -70,23 +74,4 @@ bool Person::canProduceKid() {
 
 bool Person::canTravelTo(Coordinate location) {
     return travelAbility > distance(coordinate, location);
-}
-
-Person Person::generateKid() {
-    std::uniform_int_distribution<int> sexDistribution(0, 1);
-    std::uniform_int_distribution<int> educationDistribution(0, education);
-    std::uniform_int_distribution<int> intelligenceDistribution(0, 100);
-
-    Person person = Person();
-    person.education = educationDistribution(generator);
-    person.sex = sexDistribution(generator);
-    person.fed = true;
-    person.happy = 100;
-    person.health = 100;
-    person.age = 0;
-    person.intelligence = intelligenceDistribution(generator);
-    person.coordinate = Coordinate();
-    person.coordinate.setX(coordinate.getX());
-    person.coordinate.setY(coordinate.getY());
-    return person;
 }

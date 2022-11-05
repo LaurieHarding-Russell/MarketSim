@@ -17,6 +17,7 @@
 #include "Capitalism/Investor.h"
 #include "Capitalism/Stock.h"
 #include "Capitalism/Consumer.h"
+#include "Capitalism/Consumer.util.h"
 #include "NameGenerator.h"
 #include "Map/Map.h"
 #include "Map/Coordinate.h"

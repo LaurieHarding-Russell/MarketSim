@@ -24,6 +24,7 @@ let vectorLayerPeople = new VectorLayer({
 const investorData: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("#investor")  
 const businessData: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("#business")  
 const year: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("#year")  
+const population: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("#population")  
 
 updateData();
 
@@ -70,7 +71,8 @@ async function updateData(): Promise<void> {
 }
 
 function updateVisibleData(world: World): void {
-  year.textContent = `Year ${world.year}`
+  year.textContent = `Year ${world.year}`;
+  population.textContent = `Pop: ${world.people.length}`;
   updatePeople(world);
   updateInvestors(world);
   updateCompanies(world);

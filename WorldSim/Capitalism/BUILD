@@ -8,7 +8,9 @@ cc_library(
         "Stock.h",
         "Stock.cpp",
         "Consumer.h",
-        "Consumer.cpp"
+        "Consumer.cpp",
+        "Consumer.util.h",
+        "Consumer.util.cpp",
     ],
     deps = [
         "//WorldSim/Humanity:Humanity",
