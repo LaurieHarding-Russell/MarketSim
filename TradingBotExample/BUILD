@@ -16,21 +16,6 @@ py_library(
   visibility = ["//visibility:public"]
 )
 
-cc_library(
-  name = "CppClient",
-  srcs = [
-    "CppClient.h"
-  ],
-  deps = [
-    "//Api:api",
-    "@boost//:system",
-    "@boost//:asio",
-    "@boost//:date_time",
-  ],
-  visibility = ["//visibility:public"]
-)
-
-
 py_binary(
     name = "exampleBot",
     srcs = [
@@ -40,4 +25,14 @@ py_binary(
       ":PythonClient"
     ],
     visibility = ["//visibility:public"]
+)
+
+# Swagger
+load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_gen")
+
+openapi_gen(
+  name = "investor-client-src",
+  language = "python",
+  spec = "market_sim:investorSwagger",
+  visibility = ["//visibility:public"]
 )

@@ -124,7 +124,12 @@ build_bazel_rules_nodejs_dependencies()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "npm_install")
 
-# fixme pnpm with rules_js
+# fixme pnpm with rules_jsload("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_repositories")
+openapi_repositories(
+    codegen_cli_version = "5.0.0",
+    codegen_cli_sha256 = "839fade01e54ce1eecf012b8c33adb1413cff0cf2e76e23bc8d7673f09626f8e",
+    codegen_cli_provider = "openapi"
+)
 npm_install(
     name = "npm_deps",
     package_json = "//:package.json",

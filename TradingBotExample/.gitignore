@@ -1,0 +1,8 @@
+bazel-*
+
+.vscode
+.vscode/*
+
+
+
+node_modules

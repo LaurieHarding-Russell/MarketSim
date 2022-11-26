@@ -4,7 +4,7 @@
 #include "InvestorController.h"
 #include <served/served.hpp>
 #include <served/plugins.hpp>
-#include "../TradingBot/CppClient.h"
+#include "CppClient.h"
 
 
 TEST(InvestorControllerTest, registerHappyPath) {

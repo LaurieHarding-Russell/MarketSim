@@ -6,7 +6,7 @@ cc_binary(
     deps = [
         ":MarketController",
     ],
-    visibility = ["//visibility:public"]
+    visibility = ["//:__subpackages__"]
 )
 
 cc_library(
@@ -25,7 +25,7 @@ cc_library(
         "@boost//:uuid",
         "@com_github_served//:served"
     ],
-    visibility = ["//visibility:public"]
+    visibility = ["//:__subpackages__"]
 )
 
 # Other
@@ -39,11 +39,16 @@ compile_pip_requirements(
 )
 
 # Swagger
+exports_files(
+    srcs = ["investorSwagger.yaml"],
+    visibility = ["//visibility:public"]
+)
+
 load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_gen")
 
 openapi_gen(
   name = "investor-client-src",
   language = "python",
-  spec = "investorSwagger.yaml",
-  visibility = ["//visibility:public"]
+  spec = "investorSwagger.yaml"
 )
+

@@ -14,7 +14,7 @@ cc_test(
   srcs = ["InvestorControllerTest.cpp"],
   deps = [
     "//:MarketController",
-    "//TradingBot:CppClient",
+    ":CppClient",
     "@com_google_googletest//:gtest_main"
     ],
 )
@@ -25,4 +25,18 @@ cc_binary(
   deps = [
     "//WorldSim:World"
     ],
+)
+
+cc_library(
+  name = "CppClient",
+  srcs = [
+    "CppClient.h"
+  ],
+  deps = [
+    "//Api:api",
+    "@boost//:system",
+    "@boost//:asio",
+    "@boost//:date_time",
+  ],
+  visibility = ["//visibility:public"]
 )
