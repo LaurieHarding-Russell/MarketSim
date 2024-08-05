@@ -28,13 +28,21 @@ Coordinate Map::getValidCoordinate() {
         .setY(distributionY(generator));
 }
 
-bool Map::validateResourceIsInMap(Resource resource) {
-    return validateResourceIsInMap(resource.getCoordinate());
+bool Map::validateTangibleIsInMap(Tangible &tangible) {
+    return validateTangibleIsInMap(tangible.getCoordinate());
 }
 
-bool Map::validateResourceIsInMap(Coordinate resource) {
-    return this->topLeft.getX() <= resource.getX() &&
-            this->topLeft.getY() <= resource.getY() &&
-            this->bottomRight.getX() >= resource.getX() &&
-            this->bottomRight.getY() >= resource.getY();
+bool Map::validateTangibleIsInMap(Coordinate tangible) {
+    return this->topLeft.getX() <= tangible.getX() &&
+            this->topLeft.getY() <= tangible.getY() &&
+            this->bottomRight.getX() >= tangible.getX() &&
+            this->bottomRight.getY() >= tangible.getY();
+}
+
+Coordinate Map::getTopLeft() {
+    return this->topLeft;
+}
+
+Coordinate Map::getBottomRight() {
+    return this->bottomRight;
 }

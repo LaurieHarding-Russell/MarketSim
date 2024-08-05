@@ -2,7 +2,7 @@
 #define MAP_H
 
 #include "Coordinate.h"
-#include "Resource.h"
+#include "Tangible.h"
 #include <vector>
 
 #include <stdlib.h>
@@ -20,8 +20,11 @@ class Map {
     public:
     Map();
     Map(Coordinate topLeft, Coordinate bottomRight);
-    bool validateResourceIsInMap(Resource resource);
-    bool validateResourceIsInMap(Coordinate resource);
+    bool validateTangibleIsInMap(Tangible& tangible);
+    bool validateTangibleIsInMap(Coordinate tangibleCoordinate);
+
+    Coordinate getTopLeft();
+    Coordinate getBottomRight();
 
     Coordinate getValidCoordinate();
 };

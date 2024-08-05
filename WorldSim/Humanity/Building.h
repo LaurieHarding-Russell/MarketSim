@@ -1,9 +1,9 @@
 #ifndef BUILDING_H
 #define BUILDING_H
 
-#include "../Map/Resource.h"
+#include "../Map/Tangible.h"
 
-class Building: public Resource {
+class Building: public Tangible {
     private:
     Coordinate coordinate;
 

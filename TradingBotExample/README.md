@@ -3,11 +3,7 @@
 ### Creating a trading bot (using bazel).
 The market sim exports a swagger controller.yaml.
 
-
 The easiest way to creat a new bot is to copy the WORKSPACE file and BUILD file in this folder.
-
-
-
 
 ### API
 See the swagger.yaml file for the api.

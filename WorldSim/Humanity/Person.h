@@ -1,11 +1,11 @@
 #ifndef PERSON_H
 #define PERSON_H
 
-#include "../Map/Resource.h"
+#include "../Map/Tangible.h"
 #include "../Map/MapUtil.h"
 #include <random>
 
-class Person: public Resource {
+class Person: public Tangible {
     protected:
     Coordinate coordinate;
     bool fed; // Have they eaten this turn? They will die if they haven't

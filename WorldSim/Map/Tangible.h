@@ -5,8 +5,7 @@
 #include <string>
 #include <stdexcept>
 
-// FIXME, might want to rename
-class Resource {
+class Tangible {
     public:
     virtual std::string getType() { 
         throw std::invalid_argument( "Unimplemented getType" );

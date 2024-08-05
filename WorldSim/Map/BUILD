@@ -5,8 +5,18 @@ cc_library(
         "Map.cpp",
         "Coordinate.cpp",
         "Coordinate.h",
-        "Resource.h",
+        "Tangible.h",
         "MapUtil.h",
     ],
     visibility = ["//:__subpackages__"]
+)
+
+cc_test(
+  name = "MapTest",
+  size = "small",
+  srcs = ["MapTest.cpp"],
+  deps = [
+    ":Map",
+    "@com_google_googletest//:gtest_main"
+    ],
 )
