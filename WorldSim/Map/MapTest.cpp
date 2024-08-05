@@ -49,3 +49,24 @@ TEST(MapUtil, correctDistanceBetweenCoordinates) {
         2
     );
 }
+
+TEST(MapUtil, moveTowardsTarget) {
+    Coordinate newPlace = move(
+            Coordinate().setX(1.0).setY(1.0),
+            Coordinate().setX(1.0).setY(30.0),
+            2
+        );
+    ASSERT_EQ(newPlace.getX(), 1);
+    ASSERT_EQ(newPlace.getY(), 3);
+}
+
+TEST(MapUtil, moveTowardsTargetWhenAtLocation) {
+    Coordinate newPlace = move(
+            Coordinate().setX(1.0).setY(1.0),
+            Coordinate().setX(1.0).setY(1.0),
+            2
+        );
+
+    ASSERT_EQ(newPlace.getX(), 1);
+    ASSERT_EQ(newPlace.getY(), 1);
+}

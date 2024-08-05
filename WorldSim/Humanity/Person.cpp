@@ -2,11 +2,11 @@
 
 Person::Person() {
     generator = std::default_random_engine(std::random_device{}());
-    travelAbility = 10;
+    speed = 10;
 }
 
 std::string Person::getType() {
-    return "FarmLand";
+    return "Person";
 }
 
 Coordinate Person::getCoordinate() {
@@ -14,28 +14,37 @@ Coordinate Person::getCoordinate() {
 }
 
 bool Person::wantToEat() {
-    return fed;
-}
-
-bool Person::isFed() {
-    return fed;
+    return hunger < 4;
 }
 
 void Person::feed() {
-    fed = true;
+    hunger = hunger + 1;
 }
 
-bool Person::wantToBeEntertain(){
-    return happy < 10;
+bool Person::isBored() {
+    return happy < 3;
 }
 
-bool Person::timeToDie(){
-    return health < 0 || fed == false;
+
+bool Person::timeToDie(double currentTime) {
+    return health < 0 || hunger == 0 || currentTime - birthday > 1000;
 }
 
-void Person::simulateTurn() {
-    health = health - 1;
-    age = age + 1;
+void Person::moveUpdate() {
+    if(distance(moveGoal, coordinate) < speed) {
+        coordinate = moveGoal
+    }
+    moveGoal
+}
+
+void Person::setMoveGoal(Coordinate goalLocation) {
+
+}
+
+void Person::healthUpdate() {
+    if (happy < 3 || hunger < 3) {
+        health = health - 1;
+    }
 }
 
 int Person::getIntelligence() {
@@ -64,14 +73,6 @@ double Person::getPercievedProductivityScore(int viewersIntelligence) {
     return (getProductivityScore() * coruption/100);
 }
 
-bool Person::isAlive() {
-    return !fed || health == 0 || age > 200;
-}
-
 bool Person::canProduceKid() {
-    return age > 18 && age < 50;
-}
-
-bool Person::canTravelTo(Coordinate location) {
-    return travelAbility > distance(coordinate, location);
+    return false; // FIXME, figure out age later
 }

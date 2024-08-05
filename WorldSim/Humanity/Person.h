@@ -8,15 +8,16 @@
 class Person: public Tangible {
     protected:
     Coordinate coordinate;
-    bool fed; // Have they eaten this turn? They will die if they haven't
+    int hunger; // 0 - 5; 0 == starving, 1-2 unhealthy lack of food, 3-5 has enough food. 
     bool sex;
-    int happy; // will buy entertainment.
+    int happy; // 0 = I don't see the point of living, 1 = depressed, 2 I need to do something, 3-4 = ok, 5 = pure bliss
     int health;
     int education;
     int intelligence;
     int coruption;
-    int age;
-    double travelAbility;
+    double birthday;
+    double speed;
+    Coordinate moveGoal;
 
     std::default_random_engine generator;
 
@@ -24,25 +25,26 @@ class Person: public Tangible {
 
     public: 
     Person();
-    std::string getType();
-    Coordinate getCoordinate();
+    std::string getType() override;
+    Coordinate getCoordinate() override;
 
     int getEducation();
     bool wantToEat();
     void feed();
-    bool isFed();
+
     bool canProduceKid();
-    bool wantToBeEntertain();
-    bool timeToDie();
-    void simulateTurn();
+    bool isBored();
+
+    bool timeToDie(double currentTime);
+    
+    void healthUpdate();
+    void moveUpdate();
+    void setMoveGoal(Coordinate goalLocation);
+
     int getIntelligence();
     int getCoruption();
     double getProductivityScore();
     double getPercievedProductivityScore(int viewersIntelligence);
-    bool isAlive();
-    bool canTravelTo(Coordinate);
-
-    bool shouldDie();
 };
 
 #endif

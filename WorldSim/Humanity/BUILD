@@ -14,3 +14,14 @@ cc_library(
     ],
         visibility = ["//:__subpackages__"]
 )
+
+
+cc_test(
+  name = "MapTest",
+  size = "small",
+  srcs = ["MapTest.cpp"],
+  deps = [
+    ":Humanity",
+    "@com_google_googletest//:gtest_main"
+    ],
+)
